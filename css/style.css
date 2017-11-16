@@ -2,14 +2,6 @@
 @import url(font-awesome.min.css);
 @import url(http://fonts.googleapis.com/css?family=Raleway:700,400);
 
-/*
-	Transit by TEMPLATED
-	templated.co @templatedco
-	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
-*/
-
-/* Basic */
-
 	body {
 		background: #fff;
 	}
@@ -357,8 +349,8 @@
 
 		input[type="checkbox"]:checked + label:before,
 		input[type="radio"]:checked + label:before {
-			background: #3cadd4;
-			border-color: #3cadd4;
+			background: #341414;
+			border-color: #341414;
 			color: #ffffff;
 			content: '\f00c';
 		}
@@ -465,7 +457,7 @@
 			}
 
 			.icon.rounded.color1 {
-				background-color: #3cadd4;
+				background-color: #341414;
 			}
 
 			.icon.rounded.color2 {
@@ -792,7 +784,7 @@
 		-o-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 		-ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 		transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-		background-color: #3cadd4;
+		background-color: #341414;
 		border-radius: 30px;
 		border: 0;
 		color: #ffffff !important;
@@ -811,7 +803,7 @@
 		input[type="reset"]:hover,
 		input[type="button"]:hover,
 		.button:hover {
-			background-color: #51b6d9;
+			background-color: #542222;
 			text-decoration: none;
 		}
 
@@ -819,7 +811,7 @@
 		input[type="reset"]:active,
 		input[type="button"]:active,
 		.button:active {
-			background-color: #2da2ca;
+			background-color: #341414;
 			text-decoration: none;
 		}
 
@@ -1115,7 +1107,7 @@
 			}
 
 		.wrapper.style3 {
-			background-color: #3cadd4;
+			background-color: #341414;
 			color: #ffffff;
 		}
 
