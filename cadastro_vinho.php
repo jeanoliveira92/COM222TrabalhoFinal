@@ -47,13 +47,13 @@
 
 		<!-- Header -->
 			<header id="header">
-				<h1><a href="index.html">Transit</a></h1>
+				<h1><a href="index.html">VinumWeb</a></h1>
 				<nav id="nav">
 					<ul>
-						<li><a href="index.html">Home</a></li>
-						<li><a href="generic.html">Generic</a></li>
-						<li><a href="elements.html">Elements</a></li>
-						<li><a href="#" class="button special">Sign Up</a></li>
+						<li><a href="index.html">Loggout</a></li>
+						<li><a href="generic.html">Busca por vinhos</a></li>
+						<!--li><a href="elements.html">Elements</a></li-->
+						<li><a href="#" class="button special">My Wines</a></li>
 					</ul>
 				</nav>
 			</header>
@@ -85,13 +85,17 @@
 									<label for="regiao">Região de origem:</label>
 									<input type="text" name="regiao" required="true" min="4" id="regiao" placeholder="Região">
 								</div>
-								<div class="6u 12u$(4)">
+								<div class="4u 12u$(3)">
 									<label for="tipouva">Tipo de uva:</label>
 									<input type="text" name="tipouva" required="true" min="4" id="tipouva" placeholder="Tipo de uva">
 								</div>
-								<div class="6u$ 12u$(4)">
+								<div class="4u 12u$(3)">
 									<label for="estilo">Estilo:</label>
 									<input type="text" id="estilo" required="true" min="4" name="estilo" placeholder="Estilo do vinho">
+								</div>
+								<div class="4u$ 12u$(3)">
+									<label for="preco">Preço:</label>
+									<input type="text" name="preco" required="true" min="4" id="preco" placeholder="Preço">
 								</div>
 								<div class="4u 12u$(3)">
 									<label for="harmonizacao">Harmoniza com:</label>
@@ -133,59 +137,15 @@
 		<!-- Footer -->
 			<footer id="footer">
 				<div class="container">
-					<section class="links">
-						<div class="row">
-							<section class="3u 6u(medium) 6u 12u$(4)(small)">
-								<h3>Lorem ipsum dolor</h3>
-								<ul class="unstyled">
-									<li><a href="#">Lorem ipsum dolor sit</a></li>
-									<li><a href="#">Nesciunt itaque, alias possimus</a></li>
-									<li><a href="#">Optio rerum beatae autem</a></li>
-									<li><a href="#">Nostrum nemo dolorum facilis</a></li>
-									<li><a href="#">Quo fugit dolor totam</a></li>
-								</ul>
-							</section>
-							<section class="3u 6u$(medium) 6u 12u$(4)(small)">
-								<h3>Culpa quia, nesciunt</h3>
-								<ul class="unstyled">
-									<li><a href="#">Lorem ipsum dolor sit</a></li>
-									<li><a href="#">Reiciendis dicta laboriosam enim</a></li>
-									<li><a href="#">Corporis, non aut rerum</a></li>
-									<li><a href="#">Laboriosam nulla voluptas, harum</a></li>
-									<li><a href="#">Facere eligendi, inventore dolor</a></li>
-								</ul>
-							</section>
-							<section class="3u 6u(medium) 6u 12u$(4)(small)">
-								<h3>Neque, dolore, facere</h3>
-								<ul class="unstyled">
-									<li><a href="#">Lorem ipsum dolor sit</a></li>
-									<li><a href="#">Distinctio, inventore quidem nesciunt</a></li>
-									<li><a href="#">Explicabo inventore itaque autem</a></li>
-									<li><a href="#">Aperiam harum, sint quibusdam</a></li>
-									<li><a href="#">Labore excepturi assumenda</a></li>
-								</ul>
-							</section>
-							<section class="3u$ 6u$(medium) 6u 12u$(4)(small)">
-								<h3>Illum, tempori, saepe</h3>
-								<ul class="unstyled">
-									<li><a href="#">Lorem ipsum dolor sit</a></li>
-									<li><a href="#">Recusandae, culpa necessita nam</a></li>
-									<li><a href="#">Cupiditate, debitis adipisci blandi</a></li>
-									<li><a href="#">Tempore nam, enim quia</a></li>
-									<li><a href="#">Explicabo molestiae dolor labore</a></li>
-								</ul>
-							</section>
-						</div>
-					</section>
 					<div class="row">
-						<div class="8u 6u 12u$(4)(medium)">
+						<div class="8u 12u$(medium)">
 							<ul class="copyright">
-								<li>&copy; Untitled. All rights reserved.</li>
-								<li>Design: <a href="http://templated.co">TEMPLATED</a></li>
-								<li>Images: <a href="http://unsplash.com">Unsplash</a></li>
+								<li>&copy; VinumWeb. Todos os direitos reservados.</li>
+								<li>Design base: <a href="http://templated.co">Templated</a></li>
+								<li>Densenvolvedores: Jean, Mateus e Adam</li>
 							</ul>
 						</div>
-						<div class="4u$ 6u 12u$(4)(medium)">
+						<div class="4u$ 12u$(medium)">
 							<ul class="icons">
 								<li>
 									<a class="icon rounded fa-facebook"><span class="label">Facebook</span></a>

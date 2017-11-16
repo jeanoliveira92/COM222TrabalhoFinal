@@ -101,7 +101,22 @@ class DAO implements iDAO{
    */
   public function ordenacao($atributo)
   {
-    $this->sql .= ' ORDER BY '.$atributo.'asc';    
+    $this->sql .= ' ORDER BY '.$atributo.' asc';    
+  }
+
+  /**
+  *Adiciona um group By na consulta. Asc é booleano, informando a ordem ascendente ou não
+  * @param $atributo Ordenado de acordo com esse atributo
+  * @param $asc atributo boolean, se for true é ordenado de forma ascendente
+  */
+  public function agrupar($atributo,$asc)
+  {
+    if($asc == true)
+    {
+      $this->sql .= ' GROUP BY '.$atributo.'asc';
+    } else {
+      $this->sql .= ' GROUP BY '.$atributo.'desc';
+    }
   }
 
   /**
@@ -112,6 +127,15 @@ class DAO implements iDAO{
   {
       return $this->banco->query($this->sql);
   }
+
+  /**
+   * Define o SQL que será realizado no banco, de forma direta
+   * @return resultado da consulta
+   */
+  public function setSQL($consulta)
+  {
+    $this->sql = $consulta;
+  }
   
   /**
    * Obter código SQL presente no DAO
@@ -120,5 +144,15 @@ class DAO implements iDAO{
   public function obterSQL()
   {
       return $this->sql;
+  }
+
+  /**
+  * Recebe um Mysqli_Result e retorna o número de linhas afetadas no BD
+  * @param $resultado É o resultado da consulta Mysql
+  * @return número de linhas afetadas
+  */
+  public function numLinhasAfetadas($resultado)
+  {
+    return mysqli_num_rows($resultado);
   }
 }

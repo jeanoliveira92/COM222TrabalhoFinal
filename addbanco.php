@@ -1,9 +1,10 @@
 <?php
     include_once('DAO.php');
 
-    //Obter nome e alimentos que harmonizam do formulario
+    //Obter nome,alimentos que harmonizam e preço do formulario
 	$nome = $_POST['nome'];
 	$harmonizacao = $_POST['harmonizacao'];
+	$preco = $_POST['preco'];
 
 	//Criar DAO
 	$banco = new DAO();
@@ -45,7 +46,7 @@
 				move_uploaded_file($rotulo["tmp_name"], $caminho_imagem);
 
 				//Gerar array pares atributo=>valor
-			    $dados = array('nome'=>$nome,'produtor'=>$produtor,'paisorigem'=>$pais,'regiao'=>$regiao,'tipouva'=>$tipouva,'estilo'=>$estilo,'tipo'=>$tipo,'rotulo'=>$nome_imagem);
+			    $dados = array('nome'=>$nome,'produtor'=>$produtor,'preco'=>$preco,'paisorigem'=>$pais,'regiao'=>$regiao,'tipouva'=>$tipouva,'estilo'=>$estilo,'tipo'=>$tipo,'rotulo'=>$nome_imagem);
 			    
 			    //Inserir no banco
 			    $banco->cadastro('vinho',$dados);
@@ -60,7 +61,8 @@
 				    //Cadastrar harmonizacoes com ele
 				    adicionarHarmonizacao($banco,$harmonizacao,$vinho['id']);
 
-				    //Pegar ID do usuário e cadastrar MyWines
+				    //Pegar ID do usuário e cadastrar em MyWines
+				    $id = $vinho['id'];
 
 				    //Sucesso no cadastro do vinho
 				    echo "<h2>O novo vinho foi cadastrado!</h2>";
@@ -75,7 +77,15 @@
 		//Como o vinho já é cadastrado, adicionar apenas as harmonizações
 		$vinho = mysqli_fetch_assoc($resultado);
 		adicionarHarmonizacao($banco,$harmonizacao,$vinho['id']);
-		echo "<h2>O vinho foi adicionado a sua lista pessoal!</h2>";
+
+		//Validar se o usuario informou novo preco
+		if(! ($preco == NULL || $preco == ""))
+		{
+			//Calcular e definir media de preco do vinho
+			$consulta = 'CALL atualiza_preco_vinho('.$preco.','.$id.')';
+			$banco->setSQL($consulta);
+			$banco->executar();
+		}
 	}
 
     function adicionarHarmonizacao($banco,$harmonizacao,$id)
