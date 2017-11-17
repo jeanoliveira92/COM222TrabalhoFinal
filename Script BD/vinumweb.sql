@@ -1,6 +1,6 @@
 create database vinumweb;
 
-use viniumweb;
+use vinumweb;
 
 create table vinho
 (
@@ -10,15 +10,14 @@ create table vinho
 	nome varchar(64) not null,
 	regiao varchar(32) not null,
 	paisorigem varchar(32) not null,
-	avaliacao float(2) default null,
+	avaliacao float(2) default 0,
+	preco float(2) default 0,
 	numavaliacoes int default 0,
 	tipo enum('vermelho','branco','espumante','rosa','sobremesa','porto'),
 	tipouva varchar(32) not null,
 	estilo varchar(32) not null,
 	primary key (id)
 );
-
---Inserts para teste
 
 create table harmonizacao
 (
@@ -72,8 +71,18 @@ BEGIN
 	update vinho set avaliacao = (avaliacao*numavaliacoes-old.nota*1)/numavaliacoes-1 where id=old.idvinho;
 	update vinho set avaliacao = (avaliacao*numavaliacoes+new.nota*1)/numavaliacoes where id=new.idvinho;
 END$
+--Apos alterada uma avaliacao, a avaliacao da tabela vinho deve ser atualizada
+
+--Apos inserido um preco, essa procedure deve ser chamada para atualizar
+--o preco do vinho
+DELIMITER $
+CREATE PROCEDURE atualiza_preco(IN cod_vinho int, IN valor float(2))
+BEGIN
+	DECLARE qtd bigint;
+	SELECT count(*) INTO qtd from vinhos_usuario where idvinho = cod_vinho;
+
+	update vinho set preco = (preco*(qtd-1)+valor)/qtd where idvinho=cod_vinho;
+END$
 
 DELIMITER ;
-
---Apos alterada uma avaliacao, a avaliacao da tabela vinho deve ser atualizada
 	

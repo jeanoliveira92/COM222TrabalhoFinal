@@ -1,3 +1,7 @@
+<?php
+	include_once('DAO.php');
+	$banco = new DAO();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,7 +48,20 @@
 
 	<div>
 		<h3>Harmonização com comidas</h3>
-		<input type="text" id="harmonizacao" name="harmonizacao" />
+		<?php
+			$banco->setSQL('SELECT DISTINCT alimento from harmonizacao');
+			$res = $banco->executar();
+
+			if(mysqli_num_rows($res) == 0)
+			{
+				echo "Nenhuma harminização cadastrada";
+			} else {
+				while($harm = $res->fetch_assoc()) {
+					echo '<input type="checkbox" name="'.$harm['alimento'].'" value="'.$harm['alimento'].'">'.$harm['alimento'].'<br>';
+				}
+			}
+
+		?>
 	</div>
 </body>
 <script>
