@@ -1,5 +1,6 @@
 <?php 
     if($_SERVER['REQUEST_METHOD'] == "POST"){
+        session_start();
         
         // Verifica primeiro se existem os campos e depois se estão vazios
         if(isset($_POST['email']) && isset($_POST['senha']) && !empty($_POST['email']) && !empty($_POST['senha'])){
@@ -12,24 +13,23 @@
             // Conecta com o BD
             $dao = banco();
             // Constroi a query e executa
-            $dao->buscar("usuario", null);
+            $dao->buscar("usuario");
             $dao->where(array("email='".$email."'", "senha='".$senha."'"));
             $dado = $dao->executar();
             // Pega o dado
             $row = $dado->fetch_assoc();
+  
             // Verifica se retornou algo e valida. Se entrar, o usuario existe
-            echo $dao->sql."<br>";
-            json_encode($row);
             if($row){            
                 //Inicia sessões 
-                session_start(); 
                 
                 // TUDO OK! Agora, passa os dados para a sessão e redireciona o usuário 
                 $_SESSION["id"] = $row["id"]; 
-                $_SESSION["nome"] = stripslashes($row["nome"]);
+                $_SESSION["nome"] = explode("",$row["nome"]);
                 
                 // VERIFICA SE O BOTAO LEMBRAR TA ATIVO
                 echo $dao->sql."<br>";
+            
                 if(isset($_POST['remember'])){
                     echo "DENTRO";
                     $tempo_expiracao= time()+3600*24*5; // = 1h
@@ -38,13 +38,14 @@
                 }
                 // Redireciona para a index apos login
                 header("location: ../index.php");
+                echo $_SESSION['nome'];
             }else{
                 // Usuario e/ou senha errados ou não existe
                 header("location: logon.php?error=2");
             }
         }else{
             // Usuario e/ou senha em brancos ou invalidos
-            header("location: logon.php?error=1");
+                header("location: logon.php?error=1");
         }
     }else{
        

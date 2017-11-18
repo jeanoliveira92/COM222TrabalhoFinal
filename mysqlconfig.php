@@ -4,7 +4,7 @@
 function banco() {
     include_once("DAO.php");
     $servidor = 'localhost';
-    $user = 'vinumweb';
+    $user  = 'vinumweb';
     $senha = 'vinumweb';
     $banco = 'vinumweb';
 

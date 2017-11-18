@@ -70,7 +70,7 @@
                     <div class="field-wrap">
                         <input type="password" placeholder="repita a senha" name="senhar" required autocomplete="off"/>
                     </div>
-                    <input type="button" value="Voltar" onclick="location.href='logar.php'"> <input type="submit" value="Registrar">
+                    <input type="button" value="Voltar" onclick="location.href='logon.php'"> <input type="submit" value="Registrar">
                 </form>
                 <?php if ($error != -1) { ?>
                     <div class="alert alert-danger" role="alert">
