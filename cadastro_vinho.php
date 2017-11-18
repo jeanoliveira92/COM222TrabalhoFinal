@@ -75,23 +75,23 @@
 								
 								<div class="6u$ 12u$(4)">
 									<label for="produtor">Produtor:</label>
-									<input type="text" required="true" min="4" name="produtor" id="produtor" placeholder="Nome do produtor">
+									<input type="text" min="4" name="produtor" id="produtor" placeholder="Nome do produtor">
 								</div>
 								<div class="6u 12u$(4)">
 									<label for="pais">Pais de origem:</label>
-									<input type="text" name="pais" required="true" min="4" id="pais" placeholder="País de origem">
+									<input type="text" name="pais" min="4" id="pais" placeholder="País de origem">
 								</div>
 								<div class="6u$ 12u$(4)">
 									<label for="regiao">Região de origem:</label>
-									<input type="text" name="regiao" required="true" min="4" id="regiao" placeholder="Região">
+									<input type="text" name="regiao" min="4" id="regiao" placeholder="Região">
 								</div>
 								<div class="4u 12u$(3)">
 									<label for="tipouva">Tipo de uva:</label>
-									<input type="text" name="tipouva" required="true" min="4" id="tipouva" placeholder="Tipo de uva">
+									<input type="text" name="tipouva" min="4" id="tipouva" placeholder="Tipo de uva">
 								</div>
 								<div class="4u 12u$(3)">
 									<label for="estilo">Estilo:</label>
-									<input type="text" id="estilo" required="true" min="4" name="estilo" placeholder="Estilo do vinho">
+									<input type="text" id="estilo" min="4" name="estilo" placeholder="Estilo do vinho">
 								</div>
 								<div class="4u$ 12u$(3)">
 									<label for="preco">Preço:</label>
@@ -116,7 +116,7 @@
 									<label for="rotulo">Envie o rótulo:</label>
 									<div class="fileUpload button fit">
 										<span>Carregar Arquivo</span>
-										<input type="file" required="true" name="rotulo" id="rotulo" class="upload">
+										<input type="file" name="rotulo" id="rotulo" class="upload">
 									</div>
 								</div>
 								<div class="12u$">
@@ -129,7 +129,7 @@
 						</form>
 						<hr/>
 						<h4>*Informe os alimentos que harmonizam com o vinho separados por vírgula</h4>
-						<h4>*Ao selecionar a sugestão de um vinho na entrada de nome você não precisa informar os demais campos</h4>
+						<h4>*Ao selecionar a sugestão de um vinho na entrada de nome você só precisa informar o preço. Você também pode informar os alimentos que harmonizam com a bebida.</h4>
 					</section>
 				</div>
 			</section>

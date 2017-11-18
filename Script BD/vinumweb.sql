@@ -76,12 +76,12 @@ END$
 --Apos inserido um preco, essa procedure deve ser chamada para atualizar
 --o preco do vinho
 DELIMITER $
-CREATE PROCEDURE atualiza_preco(IN cod_vinho int, IN valor float(2))
+CREATE PROCEDURE atualiza_preco(IN valor float(2),IN cod_vinho int)
 BEGIN
 	DECLARE qtd bigint;
 	SELECT count(*) INTO qtd from vinhos_usuario where idvinho = cod_vinho;
 
-	update vinho set preco = (preco*(qtd-1)+valor)/qtd where idvinho=cod_vinho;
+	update vinho set preco = (preco*qtd+valor)/(qtd+1) where id=cod_vinho;
 END$
 
 DELIMITER ;

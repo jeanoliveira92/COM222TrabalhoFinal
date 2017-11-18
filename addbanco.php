@@ -82,9 +82,11 @@
 		if(! ($preco == NULL || $preco == ""))
 		{
 			//Calcular e definir media de preco do vinho
-			$consulta = 'CALL atualiza_preco_vinho('.$preco.','.$id.')';
+			$consulta = 'CALL atualiza_preco('.$preco.','.$vinho['id'].')';
 			$banco->setSQL($consulta);
 			$banco->executar();
+
+			//Adicionar vinho do usuario
 		}
 	}
 
