@@ -43,7 +43,7 @@
                 $dao->cadastro("usuario", array("nome"=>$nome, "senha"=>$senha, "email"=>$email));
                 $dado = $dao->executar();
                 
-                header("location: ../index.php");
+                header("location: logon.php");
             }
               
         }else{

@@ -2,7 +2,7 @@
 
 // Cria a conexão com o banco
 function banco() {
-    include_once("../DAO.php");
+    include_once("DAO.php");
     $servidor = 'localhost';
     $user = 'vinumweb';
     $senha = 'vinumweb';

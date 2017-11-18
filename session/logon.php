@@ -18,6 +18,8 @@
             // Pega o dado
             $row = $dado->fetch_assoc();
             // Verifica se retornou algo e valida. Se entrar, o usuario existe
+            echo $dao->sql."<br>";
+            json_encode($row);
             if($row){            
                 //Inicia sessões 
                 session_start(); 
@@ -38,16 +40,16 @@
                 header("location: ../index.php");
             }else{
                 // Usuario e/ou senha errados ou não existe
-                header("location: logar.php?error=1");
+                header("location: logon.php?error=2");
             }
         }else{
             // Usuario e/ou senha em brancos ou invalidos
-            header("location: logar.php?error=1");
+            header("location: logon.php?error=1");
         }
     }else{
        
     include_once("header.php"); ?>
-                <form method="POST" action="logar.php">
+                <form method="POST" action="logon.php">
                     <input type="text" placeholder="e-mail" name="email"><br>
                     <input type="password" placeholder="senha" name="senha" ><br>
                     <div class="form-check">

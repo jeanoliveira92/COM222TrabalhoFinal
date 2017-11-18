@@ -942,7 +942,7 @@
 		z-index: 10000;
 	}
 
-		#header h1 {
+		#header div {
 			color: #ffffff;
 			height: inherit;
 			left: 3em;
@@ -950,7 +950,12 @@
 			margin: 0;
 			padding: 0;
 			position: absolute;
+                        margin-top: 15px;
 		}
+                
+                #header div img{
+                    height: 45%;
+                }
 
 			#header h1 a {
 				font-size: 1.25em;
@@ -1023,6 +1028,7 @@
 /* Banner */
 
 	#banner {
+                height: 100%;
 		background-image: url(../images/dark_tint.png), url(../images/wine.jpg);
 		background-position: center center;
 		background-size: cover;
