@@ -1,0 +1,140 @@
+/*
+ Name:    VinumWeb
+ Authors:   Jean Carlos de Oliveira,
+            Mateus Henrique Toledo
+ Copyright  2017 Unifei.
+ Licensed   Unifei (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+*/
+
+@import url(https://fonts.googleapis.com/css?family=Exo:100,200,400);
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300);  
+
+body, html {
+    height: 100%;
+}
+body{
+    background: url(../../images/lgbg.jpg) no-repeat center top;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+a:hover, a:visited, a:link, a:active
+{
+    text-decoration: none;
+    color: white;
+}
+
+.lg{
+    padding-top: 20%;
+}
+
+.grad{
+    -webkit-filter: blur(5px);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: -webkit-radial-gradient(rgba(0,0,0,0.65), rgba(0,0,0,1)); /* Safari 5.1-6.0 */
+    z-index: -1;
+    opacity: 0.65;
+    top: 0px;
+}
+
+.header div{
+    color: #fff;
+    font-family: 'Exo', sans-serif;
+    font-size: 35px;
+    font-weight: 100;
+    padding-top: 20px;
+    text-align: center;
+}
+
+.header div span{
+    color: #d60808 !important;
+    font-weight: 200;
+}
+
+.login input[type=text], .login input[type=password], .login input[type=email]{
+    width: 100%;
+    height: 40px;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.6);
+    color: #fff;
+    font-family: 'Exo', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 4px;
+    margin-bottom: 10px;
+}
+
+.login input[type=button], .login input[type=submit]{
+    width: 49%;
+    height: 35px;
+    background: #fff;
+    border: 1px solid #fff;
+    cursor: pointer;
+    color: #97825e;
+    font-family: 'Exo', sans-serif;
+    font-size: 16px;
+    font-weight:400;
+    padding: 6px;
+}
+
+.login input[type=button]:hover, .login input[type=submit]:hover{
+    opacity: 0.8;
+}
+
+.login input[type=button]:active, .login input[type=submit]:active{
+    opacity: 0.6;
+}
+
+.login input[type=text]:focus{
+    outline: none;
+    border: 1px solid rgba(255,255,255,0.9);
+}
+
+.login input[type=password]:focus{
+    outline: none;
+    border: 1px solid rgba(255,255,255,0.9);
+}
+
+.login input[type=button]:focus, .login input[type=submit]:focus{
+    outline: none;
+}
+
+::-webkit-input-placeholder{
+    color: rgba(255,255,255,0.6);
+}
+
+::-moz-input-placeholder{
+    color: rgba(255,255,255,0.6);
+}
+
+.alert{
+    margin-top: 10px;
+    padding: 7px;
+}
+
+.form-check{
+    display: block;
+    min-height: 20px;
+    padding-left: 20px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    vertical-align: middle;
+    color: #FFFFFF;
+    font-family: 'Exo';
+}
+
+.form-check label{
+    display: inline;
+    margin-bottom: 0;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.form-check input[type="checkbox"]{
+    float: left;
+    margin-left: -20px;
+}
