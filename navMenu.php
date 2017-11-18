@@ -1,6 +1,6 @@
 <?php
     session_start();
-    // Se habilitar esse, forçará estar logado para acessar a pagina
+    // Se habilitar esse, forçará estar logado para acessar a pagina. Comente a linha de cima.
     //include_once('session.php');
 ?>
 <!-- Header -->
