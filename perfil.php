@@ -1,4 +1,4 @@
-<html lang="pt-br">
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <title>Cadastre um novo vinho</title>
@@ -43,8 +43,8 @@
         <section id="main" class="wrapper">
             <div class="container">
                 <header class="major">
-                    <h2>Cadastrar Vinho</h2>
-                    <p>Informe os dados do seu vinho</p>
+                    <h2>Dados Pessoais</h2>
+                    <p>Informe os seus dados</p>
                 </header>
                 <section>
                     <form action="cadastrar_vinho.php" enctype="multipart/form-data" method="POST">

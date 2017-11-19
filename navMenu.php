@@ -5,14 +5,15 @@
 ?>
 <!-- Header -->
 <header id="header">
-    <div><a class="navbar-brand" href="index.php"><img src="images/logo.png"></span></a></div>
+    <div><a href="index.html"><img src="images/logo.png"></a></div>
     <nav id="nav">
         <ul>
             <li><a href="index.php">Home</a></li>
             <li><a href="cadastro_vinho.php">Entrar</a></li>
             <li><a href="cadastro_vinho.php">Cadastrar Vinho</a></li>
+            
             <?php if (isset($_SESSION["id"])) { ?>
-                <li><a href="session/logout.php">Logout</a></li>
+            <li><a href="perfil.php"><?php echo $_SESSION["nome"][1]."&nbsp;";?></a><a href="session/logout.php">( Logout )</a></li>
             <?php } else { ?>
                 <li><a href="session/logon.php">Logar</a></li>
             <?php } ?>

@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br>
     <head>
         <meta charset="UTF-8">
         <title>VinumWeb</title>
@@ -27,7 +26,7 @@
 
             <ul class="actions">
                 <li>
-                    <a href="#" class="button big">Quero fazer parte da comunidade!</a>
+                    <a href="#conhecer" class="button big">Quero fazer parte da comunidade!</a>
                 </li>
             </ul>
         </section>
@@ -36,7 +35,7 @@
         <section id="one" class="wrapper style1 special">
             <div class="container">
                 <header class="major">
-                    <h2>Que tal conhecer alguns vinhos?</h2>
+                    <h2 id="conhecer">Que tal conhecer alguns vinhos?</h2>
                     <p>Informe suas preferências abaixo e mostraremos algumas garrafas!</p>
                 </header>
                 <div class="row uniform 50%">
