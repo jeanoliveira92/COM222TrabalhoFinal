@@ -64,11 +64,11 @@
                     <input type="password" placeholder="senha" name="senha" <?php if(isset($_GET['success'])) echo "disabled"; ?>><br>
                     <div class="form-check">
                         <label>
-                          <input type="checkbox" name="remember" class="form-check-input" <?php if(isset($_GET['sucess'])) echo "disabled"; ?>>
+                          <input type="checkbox" name="remember" class="form-check-input" <?php if(isset($_GET['success'])) echo "disabled"; ?>>
                           Lembrar
                         </label>
                      </div>
-                    <input type="button" value="Registrar" onclick="location.href = 'registrar.php'" <?php if(isset($_GET['sucess'])) echo "disabled"; ?>> <input type="submit" value="Login  " <?php if(isset($_GET['sucess'])) echo "disabled"; ?>>
+                    <input type="button" value="Registrar" onclick="location.href = 'registrar.php'" <?php if(isset($_GET['success'])) echo "disabled"; ?>> <input type="submit" value="Login  " <?php if(isset($_GET['success'])) echo "disabled"; ?>>
                 </form>
                 <?php if (isset($_GET['error'])) { ?>
                     <div class="alert alert-danger" role="alert"><?php echo "E-mail ou senha inválido(os)"; ?></div>
