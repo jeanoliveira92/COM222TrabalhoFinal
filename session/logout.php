@@ -12,5 +12,5 @@ session_destroy();
 setcookie("email", "", time() - 3600);
 setcookie("senha", "", time() - 3600);
 
-header("Location: ../index.php");
+header("Location: logon.php?logout=1");
 ?>

@@ -33,7 +33,7 @@ a {
 }
 
 a:active, a:hover {
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 strong, b {
@@ -942,7 +942,7 @@ body.landing #header nav a {
     z-index: 10000;
 }
 
-#header div {
+#header h1 {
     color: #ffffff;
     height: inherit;
     left: 3em;
@@ -950,11 +950,20 @@ body.landing #header nav a {
     margin: 0;
     padding: 0;
     position: absolute;
-    padding: 1.5em 0 1.5em 0;
 }
 
-#header div a img{
-    height: 35px;
+#header h1 a {
+    font-size: 1.25em;
+    color: #fff;
+    font-family: 'Exo', sans-serif;
+    font-size: 35px;
+    font-weight: 100;
+}
+
+
+#header h1 a span{
+    color: #d60808 !important;
+    font-weight: 250;
 }
 
 #header nav {

@@ -5,7 +5,7 @@
 ?>
 <!-- Header -->
 <header id="header">
-    <div><a href="index.html"><img src="images/logo.png"></a></div>
+    <h1><a href="index.php">Vinum<span>Web</span></a></h1>
     <nav id="nav">
         <ul>
             <li><a href="index.php">Home</a></li>
@@ -15,7 +15,8 @@
             <?php if (isset($_SESSION["id"])) { ?>
             <li><a href="perfil.php"><?php echo $_SESSION["nome"][1]."&nbsp;";?></a><a href="session/logout.php">( Logout )</a></li>
             <?php } else { ?>
-                <li><a href="session/logon.php">Logar</a></li>
+                <li><a href="session/logon.php">Inscreva-se</a></li>
+                <li><a href="session/logon.php">Entrar</a></li>
             <?php } ?>
         </ul>
     </nav>

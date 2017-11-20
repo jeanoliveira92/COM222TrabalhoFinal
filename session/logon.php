@@ -1,6 +1,7 @@
 <?php      
-    // Entra se houver dados em cache (email e senha) ou vier dados do formulario via POST
-    if( ( isset($_COOKIE["email"]) && isset($_COOKIE["email"]) ) || $_SERVER['REQUEST_METHOD'] == "POST"){       
+    // Entra se houver dados em cache (email e senha) ou vier dados do formulario via POST 
+    // Sucess é uma variavel de confirmação de sucesso no login. ele entra no formulario exibe mensagem e direciona a index
+    if( !isset($_GET['success']) && ((isset($_COOKIE["email"]) && isset($_COOKIE["email"]) ) || $_SERVER['REQUEST_METHOD'] == "POST")){       
         // Verifica primeiro se existem os campos e depois se estão vazios
         if(( isset($_COOKIE["email"]) && isset($_COOKIE["email"]) )|| 
            ( isset($_POST['email']) && isset($_POST['senha']) && !empty($_POST['email']) && !empty($_POST['senha'])) ){
@@ -47,7 +48,7 @@
                     setcookie("senha", $senha, $tempo_expiracao);
                 }
                 // Redireciona para a index apos login
-                header("location: ../index.php");
+                header("location: logon.php?success=1");
             }else{
                 header("location: logon.php?error=2");
             }
@@ -59,23 +60,39 @@
        
     include_once("header.php"); ?>
                 <form method="POST" action="logon.php">
-                    <input type="text" placeholder="e-mail" name="email"><br>
-                    <input type="password" placeholder="senha" name="senha" ><br>
+                    <input type="text" placeholder="e-mail" name="email" <?php if(isset($_GET['success'])) echo "disabled"; ?>><br>
+                    <input type="password" placeholder="senha" name="senha" <?php if(isset($_GET['success'])) echo "disabled"; ?>><br>
                     <div class="form-check">
                         <label>
-                          <input type="checkbox" name="remember" class="form-check-input">
+                          <input type="checkbox" name="remember" class="form-check-input" <?php if(isset($_GET['sucess'])) echo "disabled"; ?>>
                           Lembrar
                         </label>
                      </div>
-                    <input type="button" value="Registrar" onclick="location.href = 'registrar.php'"> <input type="submit" value="Login  ">
+                    <input type="button" value="Registrar" onclick="location.href = 'registrar.php'" <?php if(isset($_GET['sucess'])) echo "disabled"; ?>> <input type="submit" value="Login  " <?php if(isset($_GET['sucess'])) echo "disabled"; ?>>
                 </form>
                 <?php if (isset($_GET['error'])) { ?>
                     <div class="alert alert-danger" role="alert"><?php echo "E-mail ou senha inválido(os)"; ?></div>
-                <?php } ?> 
+                <?php }
+                     else if (isset($_GET['success'])) { ?>
+                    <div class="alert alert-success" role="alert"><?php echo "Login realizado com sucesso. Direcionando para a página principal..."; ?></div>
+                <?php } 
+                    else if (isset($_GET['logout'])) { ?>
+                    <div class="alert alert-success" role="alert"><?php echo "Log-out realizado com sucesso"; ?></div>
+                <?php } ?>
             </div>            
         </div>
     </div>
 </div>
 <?php 
+    
     include_once("footer.php"); 
-    }?>
+    }
+    
+    if (isset($_GET['success'])) { 
+       // header("refresh: 1; location: ../index.php");
+        ?>
+        <!-- redireciona a pagina depois de 3 segundos -->
+        <META HTTP-EQUIV="REFRESH" CONTENT="3; URL=../index.php">
+    <?php
+        }
+ ?>
