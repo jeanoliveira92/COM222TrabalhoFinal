@@ -73,6 +73,9 @@
                 <?php if (isset($_GET['error'])) { ?>
                     <div class="alert alert-danger" role="alert"><?php echo "E-mail ou senha inválido(os)"; ?></div>
                 <?php }
+                    else if (isset($_GET['connect'])) { ?>
+                    <div class="alert alert-success" role="alert"><?php echo "Para continuar, conecte-se ao seu usuário"; ?></div>
+                <?php } 
                      else if (isset($_GET['success'])) { ?>
                     <div class="alert alert-success" role="alert"><?php echo "Login realizado com sucesso. Direcionando para a página principal..."; ?></div>
                 <?php } 

@@ -1224,6 +1224,8 @@ body.landing #header nav a {
 .fileUpload {
     position: relative;
     overflow: hidden;
+    float: right;
+    margin:10px;
 }
 .fileUpload input.upload {
     position: absolute;
@@ -1234,5 +1236,6 @@ body.landing #header nav a {
     font-size: 20px;
     cursor: pointer;
     opacity: 0;
+    float: left;
     filter: alpha(opacity=0);
 }

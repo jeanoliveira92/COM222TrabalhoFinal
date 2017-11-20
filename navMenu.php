@@ -15,8 +15,8 @@
             <?php if (isset($_SESSION["id"])) { ?>
             <li><a href="perfil.php"><?php echo $_SESSION["nome"][1]."&nbsp;";?></a><a href="session/logout.php">( Logout )</a></li>
             <?php } else { ?>
-                <li><a href="session/logon.php">Inscreva-se</a></li>
-                <li><a href="session/logon.php">Entrar</a></li>
+                <li><a href="session/logon.php">Sign up</a></li>
+                <li><a href="session/logon.php">Login</a></li>
             <?php } ?>
         </ul>
     </nav>

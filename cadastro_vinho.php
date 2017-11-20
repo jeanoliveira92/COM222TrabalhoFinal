@@ -1,3 +1,5 @@
+<?php include_once 'session.php'; ?>
+
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
@@ -26,7 +28,7 @@
         <script type="text/javascript">
             $(document).ready(function () {
                 $("#nome").autocomplete("cadastro_vinho_Autocompletar.php", {
-                    width: 310,
+                    width:592,
                     selectFirst: false
                 });
             });
@@ -78,7 +80,7 @@
                             </div>
                             <div class="4u$ 12u$(3)">
                                 <label for="preco">Preço:</label>
-                                <input type="text" name="preco" required="true" min="4" id="preco" placeholder="Preço">
+                                <input type="text" name="preco"  min="4" id="preco" placeholder="Preço">
                             </div>
                             <div class="4u 12u$(3)">
                                 <label for="harmonizacao">Harmoniza com:</label>
@@ -97,9 +99,10 @@
                             </div>
                             <div class="4u 12u$(3)">
                                 <label for="rotulo">Envie o rótulo:</label>
-                                <div class="fileUpload button fit">
-                                    <span>Carregar Arquivo</span>
-                                    <input type="file" name="rotulo" id="rotulo" class="upload">
+                                <input id="uploadFile" type="text" placeholder="Choose File" disabled="disabled" />
+                                <div class="fileUpload button">
+                                    <span>Upload</span>
+                                    <input type="file" class="upload" name="rotulo" id="rotulo" />
                                 </div>
                             </div>
                             <div class="12u$">
@@ -148,5 +151,10 @@
             </div>
         </footer>
 
+<script language="javascript">
+    document.getElementById("rotulo").onchange = function () {
+    document.getElementById("uploadFile").value = this.value;
+};
+</script>
     </body>
 </html>
