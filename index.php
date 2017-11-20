@@ -8,7 +8,9 @@
         <!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
         <script src="js/jquery.min.js"></script>
         <script src="js/skel.min.js"></script>
+        <!-- conflito
         <script src="js/skel-layers.min.js"></script>
+        -->
         <script src="js/init.js"></script>
         <noscript>
         <link rel="stylesheet" href="css/skel.css" />
@@ -160,6 +162,5 @@
                 </div>
             </div>
         </footer>
-
     </body>
 </html>
