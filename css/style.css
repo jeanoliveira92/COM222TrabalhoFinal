@@ -1239,3 +1239,12 @@ body.landing #header nav a {
     float: left;
     filter: alpha(opacity=0);
 }
+.tagsinput{    
+    min-height: 10px !important;
+    height: 40px !important;
+    overflow: hidden;
+}
+
+.not_valid{
+    height: 28px;
+}

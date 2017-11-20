@@ -49,6 +49,7 @@
                 }
                 // Redireciona para a index apos login
                 header("location: logon.php?success=1");
+                //header("location: ../index.php");
             }else{
                 header("location: logon.php?error=2");
             }
@@ -94,7 +95,7 @@
     if (isset($_GET['success'])) { 
        // header("refresh: 1; location: ../index.php");
         ?>
-        <!-- redireciona a pagina depois de 3 segundos -->
+        <!-- redireciona a pagina depois de 3 segundos-->
         <META HTTP-EQUIV="REFRESH" CONTENT="3; URL=../index.php">
     <?php
         }

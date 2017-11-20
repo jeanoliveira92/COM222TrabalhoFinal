@@ -21,10 +21,10 @@
 
         <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/start/jquery-ui.css" />
         <link rel="stylesheet" type="text/css" href="css/jquery.autocomplete.css" />
-        <link rel="stylesheet" type="text/css" href="css/jquery.tajjgsinput.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.tagsinput.min.css" />
 
         <script type="text/javascript" src="js/jquery.autocomplete.js"></script>
-        <script type="text/javascript" src="js/jquery.tagsinput.js"></script>
+        <script type="text/javascript" src="js/jquery.tagsinput.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
                 $("#nome").autocomplete("cadastro_vinho_Autocompletar.php", {
