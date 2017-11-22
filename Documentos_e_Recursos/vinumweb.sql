@@ -84,4 +84,6 @@ BEGIN
 	update vinho set preco = (preco*qtd+valor)/(qtd+1) where id=cod_vinho;
 END$
 DELIMITER ;
+
+SELECT DISTINCT tipouva from vinho where tipouva like '%tipo%' order by tipouva asc;
 	
