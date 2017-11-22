@@ -5,12 +5,12 @@
         <ul>
             <li><a href="index.php">Home</a></li>
             <li><a href="cadastro_vinho.php">Cadastrar Vinho</a></li>
-            
+
             <?php if (isset($_SESSION["id"])) { ?>
-            <li><a href="perfil.php"><?php echo $_SESSION["nome"][0]."&nbsp;";?></a><a href="session/logout.php">( Logout )</a></li>
+                <li><a href="perfil.php"><?php echo $_SESSION["nome"][0] . "&nbsp;"; ?></a><a href="logout.php">( Logout )</a></li>
             <?php } else { ?>
-                <li><a href="session/registrar.php">Sign up</a></li>
-                <li><a href="session/logon.php">Login</a></li>
+                <li><a href="signup.php">Sign up</a></li>
+                <li><a href="logon.php">Login</a></li>
             <?php } ?>
         </ul>
     </nav>
