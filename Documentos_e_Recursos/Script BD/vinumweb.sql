@@ -85,4 +85,6 @@ BEGIN
 END$
 
 DELIMITER ;
-	
+
+--Obter as uvas do banco
+SELECT DISTINCT tipouva from vinho where tipouva like '%tipo%' order by tipouva asc;
