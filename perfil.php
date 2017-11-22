@@ -1,8 +1,48 @@
-<?php session_start(); ?>
+<?php
+session_start();
+include_once 'session.php';
+include_once 'DAO.php';
+
+$dao = new DAO();
+
+$email;
+$msg;
+
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+$nome = addslashes($_POST['nome']);
+$email = addslashes($_POST['email']);
+
+if (empty($nome)) {
+$msg = "Campo nome em branco";
+} else if (empty($email)) {
+$msg = "Campo email em branco";
+} else if (substr_count($nome, "\\")) {
+$msg = "Campo preco invalido. Contém: aspas simples/duplas, barras ou valor NULL";
+} else if (substr_count($email, "\\")) {
+$msg = "Campo preco invalido. Contém: aspas simples/duplas, barras ou valor NULL";
+
+// Se não houver erros,a atualiza o usuario
+} else {
+$dao->atualizacao("usuario", array("nome" => $nome, "email" => $email));
+$dao->where(array("id='".$_SESSION['id']."'"));
+$dao->executar();
+
+$_SESSION['nome'] = $nome;
+$msg = "Atualizado com sucesso!";
+}
+} else {
+$dao->buscar("usuario", array("email"));
+$dao->where(array("id='" . $_SESSION['id'] . "'"));
+$dado = $dao->executar();
+$row = $dado->fetch_assoc();
+
+$email = $row['email'];
+}
+?>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Cadastre um novo vinho</title>
+        <title><?php $nome; ?></title>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="description" content="" />
         <meta name="keywords" content="" />
@@ -50,16 +90,19 @@
                     <p>Informe os seus dados</p>
                 </header>
                 <section>
-                    <form action="cadastrar_vinho.php" enctype="multipart/form-data" method="POST">
+                    <form action="perfil.php" enctype="multipart/form-data" method="POST">
+                        <?php if (isset($msg)) { ?>
+                            <div class="alert-success" role="alert"><?php echo $msg ?></div>
+                        <?php } ?>
                         <div class="row uniform 50%">
                             <div class="12u$">
                                 <label for="nome">Nome:</label>
-                                <input type="text" name="nome" id="nome" placeholder="Nome do vinho">
+                                <input type="text" name="nome" id="nome" value="<?php echo $_SESSION['nome']; ?>"placeholder="Nome do vinho" required>
                             </div>
 
                             <div class="10u 12u$(Medium)">
                                 <label for="produtor">Email:</label>
-                                <input type="text" min="4" name="produtor" id="produtor" placeholder="Nome do produtor">
+                                <input type="email" min="4" name="email" id="produtor" value="<?php echo $email; ?>" placeholder="Nome do produtor" required>
                             </div>
                             <div class="2u 12u$(Medium)">
                                 <label for="produtor">Alterar sua senha:</label>
@@ -75,7 +118,7 @@
                         </div>
                     </form>
                     <hr/>
-               </section>
+                </section>
             </div>
         </section>
 

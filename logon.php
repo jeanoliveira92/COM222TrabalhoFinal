@@ -37,7 +37,7 @@ if ((isset($_COOKIE["email"]) && isset($_COOKIE["email"]) ) || $_SERVER['REQUEST
             session_start();
             // TUDO OK! Agora, passa os dados para a sessão e redireciona o usuário 
             $_SESSION["id"] = $row["id"];
-            $_SESSION["nome"] = explode(" ", $row["nome"]);
+            $_SESSION["nome"] = $row["nome"];
 
             // VERIFICA SE O BOTAO LEMBRAR TA ATIVO
             echo $dao->sql . "<br>";
