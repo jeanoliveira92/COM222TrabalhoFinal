@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <html lang="pt-br>
     <head>
         <meta charset="UTF-8">
@@ -17,7 +19,6 @@
         <link rel="stylesheet" href="css/style.css" />
         <link rel="stylesheet" href="css/style-xlarge.css" />
         </noscript>
-        <link href="css/nouislider.min.css" rel="stylesheet">
     </head>
     <body class="landing">
         <?php include_once("navMenu.php"); ?>
@@ -28,7 +29,7 @@
 
             <ul class="actions">
                 <li>
-                    <a href="#conhecer" class="button big">Quero fazer parte da comunidade!</a>
+                    <a href="#conhecer" class="button big">Começe a sua busca!</a>
                 </li>
             </ul>
         </section>
@@ -40,57 +41,7 @@
                     <h2 id="conhecer">Que tal conhecer alguns vinhos?</h2>
                     <p>Informe suas preferências abaixo e mostraremos algumas garrafas!</p>
                 </header>
-                <div class="row uniform 50%">
-                    <div class="4u 12u$(4)">
-                        <div class="select-wrapper">
-                            <select>
-                                <option value="branco">Vinho branco</option>
-                                <option value="vermelho">Vinho vermelho</option>
-                                <option value="espumante">Vinho espumante</option>
-                                <option value="ros">Vinho rosa</option>
-                                <option value="sobremesa">Vinho sobremesa</option>
-                                <option value="porto">Vinho porto</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="4u 12u$(4)">
-                        <script src="js/nouislider.min.js"></script>
-                        <div id="sliderRange"></div>
-                        <script>
-                            var slider = document.getElementById('sliderRange');
-
-                            noUiSlider.create(slider, {
-                                start: [1000, 4000],
-                                connect: true,
-                                range: {
-                                    'min': 0,
-                                    'max': 5000
-                                }
-                            });
-
-                        </script>
-                    </div>
-                    <div class="4u$ 12u$(4)">
-                        <div id="slider-range"></div>
-                        <script>
-                            var rangeSlider = document.getElementById('slider-range');
-
-                            noUiSlider.create(rangeSlider, {
-                                start: [2000],
-                                range: {
-                                    'min': [1000],
-                                    'max': [5000]
-                                }
-                            });
-                        </script>
-                    </div>
-                </div>
-                <br/><br/>
-                <ul class="actions">
-                    <li>
-                        <a href="#" class="button big">Exibir vinhos</a>
-                    </li>
-                </ul>
+                <?php include_once('slider.php'); ?>
             </div>
         </section>
 

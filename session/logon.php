@@ -7,7 +7,7 @@
            ( isset($_POST['email']) && isset($_POST['senha']) && !empty($_POST['email']) && !empty($_POST['senha'])) ){
             
             // Cria-se primeiro a conexão com o banco            
-            include_once("../mysqlconfig.php");
+            include_once("../DAO.php");
             // Variaveis de login
             $email = ""; $senha = "";
             // Se os cookies existem, carrega-se eles nas variaveis
@@ -22,7 +22,7 @@
                 $senha = hash('sha256', addslashes($_POST["senha"])); 
             }
             // Conecta com o BD
-            $dao = banco();
+            $dao = new DAO();
             // Constroi a query e executa
             $dao->buscar("usuario");
             $dao->where(array("email='".$email."'", "senha='".$senha."'"));

@@ -1,11 +1,11 @@
 <?php
 
-include_once("mysqlconfig.php");
+include_once("DAO.php");
 
 $q = $_GET['q'];
 
 //$mysqli=mysqli_connect('localhost','vinumweb','vinumweb','vinumweb') or die("Falha ao buscar vinhos no banco");
-$dao = banco();
+$dao = new DAO;
 
 $dao->buscar("vinho", array("nome"));
 $dao->where(array("nome LIKE '%" . $q . "%'"));

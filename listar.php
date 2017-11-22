@@ -7,17 +7,44 @@
 <head>
 	<meta charset="utf-8">
 	<title>Pesquisa por vinhos</title>
-	<link href="css/nouislider.min.css" rel="stylesheet">
+	<script src="js/jquery.js"></script>
+	<script src="js/skel.min.js"></script>
+	<script src="js/skel-layers.min.js"></script>
+	<noscript>
+		<link rel="stylesheet" href="css/skel.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/style-xlarge.css" />
+	</noscript>
+
+	<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/start/jquery-ui.css" />
+	<link rel="stylesheet" type="text/css" href="css/jquery.autocomplete.css" />
+	<link rel="stylesheet" type="text/css" href="css/jquery.tajjgsinput.css" />
+
+	<script type="text/javascript" src="js/jquery.autocomplete.js"></script>
+	<script type="text/javascript">
+	 	$(document).ready(function(){
+			$("#uvas").autocomplete("busca_uva.php", {
+				width:310,
+				selectFirst: false
+			});
+		});
+	</script>
+	<!--script type="text/javascript">
+	 	function addParagrafo(){
+	 		document.getElementById("puvas").textContent = document.getElementById("tipo".value);
+	 	}
+	</script-->
 </head>
 <body>
+    <div style="">
 	<div>
 		<h3>Tipo de vinho</h3>
-		<input type="checkbox" name="tipo" value="vermelho">Vermelho<br>
-		<input type="checkbox" name="tipo" value="branco">Branco<br>
-		<input type="checkbox" name="tipo" value="rosa">Rosa<br>
-		<input type="checkbox" name="tipo" value="espumante">Espumante<br>
-		<input type="checkbox" name="tipo" value="porto">Porto<br>
-		<input type="checkbox" name="tipo" value="sobremesa">Sobremesa<br>
+		<input type="checkbox" id="tipo" name="tipo" value="vermelho">Vermelho<br>
+		<input type="checkbox" id="tipo" name="tipo" value="branco">Branco<br>
+		<input type="checkbox" id="tipo" name="tipo" value="rosa">Rosa<br>
+		<input type="checkbox" id="tipo" name="tipo" value="espumante">Espumante<br>
+		<input type="checkbox" id="tipo" name="tipo" value="porto">Porto<br>
+		<input type="checkbox" id="tipo" name="tipo" value="sobremesa">Sobremesa<br>
 	</div>
 
 	<div>
@@ -33,7 +60,9 @@
 
 	<div>
 		<h3>Uvas</h3>
-		<input type="text" id="uvas" name="uvas" />
+		<input type="text" id="uvas" name="uvas"/>
+		<div id="tuvas">
+		</div>
 	</div>
 
 	<div>
@@ -63,6 +92,10 @@
 
 		?>
 	</div>
+    </div>
+    <div style="">
+    aehuaheauehau
+    </di>
 </body>
 <script>
 	var slider = document.getElementById('slider');

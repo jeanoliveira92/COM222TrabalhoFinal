@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -51,69 +52,30 @@
                 <section>
                     <form action="cadastrar_vinho.php" enctype="multipart/form-data" method="POST">
                         <div class="row uniform 50%">
-                            <div class="6u 12u$(4)">
+                            <div class="12u$">
                                 <label for="nome">Nome:</label>
                                 <input type="text" name="nome" id="nome" placeholder="Nome do vinho">
                             </div>
 
-                            <div class="6u$ 12u$(4)">
-                                <label for="produtor">Produtor:</label>
+                            <div class="10u 12u$(Medium)">
+                                <label for="produtor">Email:</label>
                                 <input type="text" min="4" name="produtor" id="produtor" placeholder="Nome do produtor">
                             </div>
-                            <div class="6u 12u$(4)">
-                                <label for="pais">Pais de origem:</label>
-                                <input type="text" name="pais" min="4" id="pais" placeholder="País de origem">
-                            </div>
-                            <div class="6u$ 12u$(4)">
-                                <label for="regiao">Região de origem:</label>
-                                <input type="text" name="regiao" min="4" id="regiao" placeholder="Região">
-                            </div>
-                            <div class="4u 12u$(3)">
-                                <label for="tipouva">Tipo de uva:</label>
-                                <input type="text" name="tipouva" min="4" id="tipouva" placeholder="Tipo de uva">
-                            </div>
-                            <div class="4u 12u$(3)">
-                                <label for="estilo">Estilo:</label>
-                                <input type="text" id="estilo" min="4" name="estilo" placeholder="Estilo do vinho">
-                            </div>
-                            <div class="4u$ 12u$(3)">
-                                <label for="preco">Preço:</label>
-                                <input type="text" name="preco" required="true" min="4" id="preco" placeholder="Preço">
-                            </div>
-                            <div class="4u 12u$(3)">
-                                <label for="harmonizacao">Harmoniza com:</label>
-                                <input type="text" id="harmonizacao" name="harmonizacao" placeholder="Comidas que combinam">
-                            </div>
-                            <div class="4u 12u$(3)">
-                                <label for="tipo">Tipo:</label>
-                                <select name="tipo" id="tipo">
-                                    <option value="vermelho">Vermelho</option>
-                                    <option value="branco">Branco</option>
-                                    <option value="espumante">Espumante</option>
-                                    <option value="rosa">Rosa</option>
-                                    <option value="sobremesa">Sobremesa</option>
-                                    <option value="porto">Porto</option>
-                                </select>
-                            </div>
-                            <div class="4u 12u$(3)">
-                                <label for="rotulo">Envie o rótulo:</label>
-                                <div class="fileUpload button fit">
-                                    <span>Carregar Arquivo</span>
-                                    <input type="file" name="rotulo" id="rotulo" class="upload">
-                                </div>
-                            </div>
-                            <div class="12u$">
+                            <div class="2u 12u$(Medium)">
+                                <label for="produtor">Alterar sua senha:</label>
                                 <ul class="actions">
-                                    <li><input type="submit" onclick="" value="Cadastrar vinho" ></li>
-                                    <li><input type="reset" value="Reset" class="special"></li>
+                                    <li><input type="submit" onclick="" value="Alterar a senha" ></li>
+                                </ul>
+                            </div>
+                            <div class="12u$" style="margin-top: 40px;">
+                                <ul class="actions" style="text-align: center;">
+                                    <li><input type="submit" onclick="" value="Atualizar Dados" ></li>
                                 </ul>
                             </div>
                         </div>
                     </form>
                     <hr/>
-                    <h4>*Informe os alimentos que harmonizam com o vinho separados por vírgula</h4>
-                    <h4>*Ao selecionar a sugestão de um vinho na entrada de nome você só precisa informar o preço. Você também pode informar os alimentos que harmonizam com a bebida.</h4>
-                </section>
+               </section>
             </div>
         </section>
 

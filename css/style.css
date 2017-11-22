@@ -237,16 +237,17 @@ input[type="password"]:invalid,
 input[type="email"]:invalid,
 select:invalid,
 textarea:invalid {
-    box-shadow: none;
+    box-shadow: 0 !important;
 }
+
 
 input[type="text"]:focus,
 input[type="password"]:focus,
 input[type="email"]:focus,
 select:focus,
 textarea:focus {
-    border-color: #383b43;
-    box-shadow: 0 0 0 1px #383b43;
+     aborder-color: #383b43;
+     box-shadow: 0 0 0 1px #c7b7b7;
 }
 
 .select-wrapper {
@@ -277,6 +278,7 @@ textarea:focus {
     top: 0;
     width: 2.75em;
 }
+
 
 .select-wrapper select::-ms-expand {
     display: none;
@@ -1247,4 +1249,32 @@ body.landing #header nav a {
 
 .not_valid{
     height: 28px;
+}
+
+.inputbar{
+    background-color: #F5F5F5;
+    border-radius: 0;
+}
+
+option:active, option:hover, option:visited{
+    background-color: #e4e2e2 !important;
+}
+
+.alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    
+    border: 1px solid #ebccd1;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+.alert-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #dff0d8;
+    border-radius: 4px;
 }
