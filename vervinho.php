@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 include_once('DAO.php');
 $idvinho = $_GET['id'];
 $banco = new DAO();
@@ -6,6 +7,21 @@ $banco->buscar('vinho', NULL);
 $banco->where(array("id=" . $idvinho));
 $res = $banco->executar();
 $vinho = $res->fetch_assoc();
+=======
+	include_once('DAO.php');
+	$idvinho = $_GET['id'];
+	$banco = new DAO();
+	$banco->buscar('vinho',NULL);
+	$banco->where(array("id=".$idvinho));
+	$res = $banco->executar();
+
+	if($banco->numLinhasAfetadas($res)==0) {
+		header("location: index.php");
+	}
+
+	$vinho = $res->fetch_assoc();
+	
+>>>>>>> 285d08e0cd4913b56e8710e50e592aca9b1d5777
 
 function buscaAvaliacoes() {
     $idvinho = $_GET['id'];
@@ -27,12 +43,25 @@ function buscaUsuario($id) {
     $database->where(array("id=" . $id));
     $usuario = $database->executar();
 
+<<<<<<< HEAD
     if ($database->numLinhasAfetadas($usuario) == 0) {
         return NULL;
     } else {
         return $usuario->fetch_assoc();
     }
 }
+=======
+		if($database->numLinhasAfetadas($usuario)==0) {
+			return NULL;
+		} else {
+			return $usuario->fetch_assoc();
+		}
+	}
+
+	function exibeAvaliacoes() {
+		$idvinho = $_GET['id'];
+	}
+>>>>>>> 285d08e0cd4913b56e8710e50e592aca9b1d5777
 ?>
 <html lang="en">
     <head>
@@ -108,6 +137,7 @@ function buscaUsuario($id) {
             </div>
         </section>
 
+<<<<<<< HEAD
         <section id="ratings" class="wrapper">
             <div class="container">
                 <section>
@@ -148,6 +178,74 @@ function buscaUsuario($id) {
                             <div class="2u" style="position: relative; float: left;padding-left: 30px">5.0</div>
                             <script>
                                 var rateSlider = document.getElementById('rate-range');
+=======
+			<section id="harmonizacao" class="wrapper 20%">
+				<div class="container">
+				<div class="row 10%">
+					<div class="6u 12u$(medium)">
+						<section>
+							<h2>Alimentos harmonizantes:</h2>
+							<?php
+								$avaliacoes = buscaAvaliacoes();
+								if($avaliacoes != NULL) {
+									while($av = $avaliacoes->fetch_assoc()) {
+										$pessoa = buscaUsuario($av['idusuario']);
+
+										if($pessoa !== NULL) {
+											echo '<blockquote><h4><a href="">'.$pessoa['nome'].'</a> avaliou em '.$av['nota'].':</h4>';
+											echo '"'.$av['opiniao'].'"</blockquote>';
+										}
+									}
+								} else {
+									echo "<h4>Esse vinho ainda não foi avaliado.</h4>";
+								}
+							?>
+						</section>
+					</div>
+
+					<div class="6u 12u$(medium)">
+						<section>
+							<h2>Avaliações:</h2>
+							<?php
+								$avaliacoes = buscaAvaliacoes();
+								if($avaliacoes != NULL) {
+									while($av = $avaliacoes->fetch_assoc()) {
+										$pessoa = buscaUsuario($av['idusuario']);
+
+										if($pessoa !== NULL) {
+											echo '<blockquote><h4><a href="">'.$pessoa['nome'].'</a> avaliou em '.$av['nota'].':</h4>';
+											echo '"'.$av['opiniao'].'"</blockquote>';
+										}
+									}
+								} else {
+									echo "<h4>Esse vinho ainda não foi avaliado.</h4>";
+								}
+							?>
+						</section>
+					</div>
+				</div>
+			</div>
+			</section>
+		<!-- Three -->
+			<section id="three" class="wrapper style2 special">
+				<div class="container">
+					<header class="major">
+						<h2>Avalie esse vinho</h2>
+						<p>A sua avaliação será de grande importância para a comunidade VinumWeb</p>
+					</header>
+				</div>
+				<div class="container 50%">
+					<form action="#" method="post">
+						<div class="row uniform">
+							<div class="12u$">
+		                        <script src="js/nouislider.min.js"></script>
+		                        <link href="css/nouislider.min.css" rel="stylesheet">
+		                        <div id="rate-value" class="2u" style="position: relative; float: left;padding-bottom: 10px;">1000</div>
+		                        <div id="rate-range" class="8u" style="position: relative; float: left;"></div>
+		                        <div class="2u" style="position: relative; float: left;padding-left: 30px">5.0</div>
+		                        <script>
+		                            var rateSlider = document.getElementById('rate-range');
+>>>>>>> 285d08e0cd4913b56e8710e50e592aca9b1d5777
 
                                 noUiSlider.create(rateSlider, {
                                     start: [3],
