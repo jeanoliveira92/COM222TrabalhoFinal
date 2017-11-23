@@ -5,7 +5,13 @@
 	$banco->buscar('vinho',NULL);
 	$banco->where(array("id=".$idvinho));
 	$res = $banco->executar();
+
+	if($banco->numLinhasAfetadas($res)==0) {
+		header("location: index.php");
+	}
+
 	$vinho = $res->fetch_assoc();
+	
 
 	function buscaAvaliacoes() {
 		$idvinho = $_GET['id'];
@@ -32,6 +38,10 @@
 		} else {
 			return $usuario->fetch_assoc();
 		}
+	}
+
+	function exibeAvaliacoes() {
+		$idvinho = $_GET['id'];
 	}
 ?>
 <html lang="en">
@@ -108,26 +118,52 @@
 				</div>
 			</section>
 
-			<section id="ratings" class="wrapper">
+			<section id="harmonizacao" class="wrapper 20%">
 				<div class="container">
-					<section>
-						<h2>Avaliações:</h2>
-						<?php
-							$avaliacoes = buscaAvaliacoes();
-							if($avaliacoes != NULL) {
-								while($av = $avaliacoes->fetch_assoc()) {
-									$pessoa = buscaUsuario($av['idusuario']);
+				<div class="row 10%">
+					<div class="6u 12u$(medium)">
+						<section>
+							<h2>Alimentos harmonizantes:</h2>
+							<?php
+								$avaliacoes = buscaAvaliacoes();
+								if($avaliacoes != NULL) {
+									while($av = $avaliacoes->fetch_assoc()) {
+										$pessoa = buscaUsuario($av['idusuario']);
 
-									if($pessoa !== NULL) {
-										echo '<blockquote><h4><a href="">'.$pessoa['nome'].'</a> avaliou em '.$av['nota'].':</h4>';
-										echo '"'.$av['opiniao'].'"</blockquote>';
+										if($pessoa !== NULL) {
+											echo '<blockquote><h4><a href="">'.$pessoa['nome'].'</a> avaliou em '.$av['nota'].':</h4>';
+											echo '"'.$av['opiniao'].'"</blockquote>';
+										}
 									}
+								} else {
+									echo "<h4>Esse vinho ainda não foi avaliado.</h4>";
 								}
-							} else {
-								echo "<h4>Esse vinho ainda não foi avaliado.</h4>";
-							}
-						?>
+							?>
+						</section>
+					</div>
+
+					<div class="6u 12u$(medium)">
+						<section>
+							<h2>Avaliações:</h2>
+							<?php
+								$avaliacoes = buscaAvaliacoes();
+								if($avaliacoes != NULL) {
+									while($av = $avaliacoes->fetch_assoc()) {
+										$pessoa = buscaUsuario($av['idusuario']);
+
+										if($pessoa !== NULL) {
+											echo '<blockquote><h4><a href="">'.$pessoa['nome'].'</a> avaliou em '.$av['nota'].':</h4>';
+											echo '"'.$av['opiniao'].'"</blockquote>';
+										}
+									}
+								} else {
+									echo "<h4>Esse vinho ainda não foi avaliado.</h4>";
+								}
+							?>
+						</section>
+					</div>
 				</div>
+			</div>
 			</section>
 		<!-- Three -->
 			<section id="three" class="wrapper style2 special">
