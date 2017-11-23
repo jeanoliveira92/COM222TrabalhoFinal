@@ -85,5 +85,5 @@ BEGIN
 END$
 DELIMITER ;
 
-SELECT DISTINCT tipouva from vinho where tipouva like '%tipo%' order by tipouva asc;
+SELECT DISTINCT tipouva from vinho order by tipouva asc;
 	

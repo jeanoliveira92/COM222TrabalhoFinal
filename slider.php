@@ -1,4 +1,4 @@
-            <form action="pagina.php" name="form" method="GET">
+            <form action="listar.php" name="form" method="GET">
                 <div class="row uniform 50%">
                     <div class="2u 12u$(medium)" style="padding-top: 59px;">
                         <div class="select-wrapper">
