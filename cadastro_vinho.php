@@ -229,7 +229,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                             <div class="12u$">
                                 <?php if (isset($msg)) { ?>
                                     <div class="alert-danger" role="alert"><?php echo $msg ?></div>
-                                <?php }else if(isset($Sucess)) { ?>
+                                <?php } else if (isset($Sucess)) { ?>
                                     <div class="alert-success" role="alert"><?php echo $Sucess ?></div>
                                 <?php } ?>
                             </div>
@@ -269,36 +269,48 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                             <div class="4u 12u$(3)">
                                 <label for="tipo">Tipo:</label>
                                 <select name="tipo" id="tipo">
-                                    <option value="vermelho" <?php if (isset($msg)) {
-                                    if ($tipo == "vermelho") {
-                                        echo "selected";
+                                    <option value="vermelho" <?php
+                                    if (isset($msg)) {
+                                        if ($tipo == "vermelho") {
+                                            echo "selected";
+                                        }
                                     }
-                                } ?>>Vermelho</option>
-                                    <option value="branco" <?php if (isset($msg)) {
-                                    if ($tipo == "branco") {
-                                        echo "selected";
+                                    ?>>Vermelho</option>
+                                    <option value="branco" <?php
+                                    if (isset($msg)) {
+                                        if ($tipo == "branco") {
+                                            echo "selected";
+                                        }
                                     }
-                                } ?>>Branco</option>
-                                    <option value="espumante" <?php if (isset($msg)) {
-                                    if ($tipo == "espumante") {
-                                        echo "selected";
+                                    ?>>Branco</option>
+                                    <option value="espumante" <?php
+                                    if (isset($msg)) {
+                                        if ($tipo == "espumante") {
+                                            echo "selected";
+                                        }
                                     }
-                                } ?>>Espumante</option>
-                                    <option value="rosa" <?php if (isset($msg)) {
-                                    if ($tipo == "rosa") {
-                                        echo "selected";
+                                    ?>>Espumante</option>
+                                    <option value="rosa" <?php
+                                    if (isset($msg)) {
+                                        if ($tipo == "rosa") {
+                                            echo "selected";
+                                        }
                                     }
-                                } ?>>Rosa</option>
-                                    <option value="sobremesa" <?php if (isset($msg)) {
-                                    if ($tipo == "sobremesa") {
-                                        echo "selected";
-                                    }
-                                } ?>>Sobremesa</option>
-                                    <option value="porto" <?php if (isset($msg)) {
-                                    if ($tipo == "porto") {
-                                        echo "selected";
-                                    }
-                                } ?>>Porto</option>
+                                    ?>>Rosa</option>
+                                    <option value="sobremesa" <?php
+                                            if (isset($msg)) {
+                                                if ($tipo == "sobremesa") {
+                                                    echo "selected";
+                                                }
+                                            }
+                                            ?>>Sobremesa</option>
+                                    <option value="porto" <?php
+                                            if (isset($msg)) {
+                                                if ($tipo == "porto") {
+                                                    echo "selected";
+                                                }
+                                            }
+                                            ?>>Porto</option>
                                 </select>
                             </div>
                             <div class="4u 12u$(3)">
@@ -323,42 +335,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 </section>
             </div>
         </section>
-
-        <!-- Footer -->
-        <footer id="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="8u 12u$(medium)">
-                        <ul class="copyright">
-                            <li>&copy; VinumWeb. Todos os direitos reservados.</li>
-                            <li>Design base: <a href="http://templated.co">Templated</a></li>
-                            <li>Densenvolvedores: Jean, Mateus e Adam</li>
-                        </ul>
-                    </div>
-                    <div class="4u$ 12u$(medium)">
-                        <ul class="icons">
-                            <li>
-                                <a class="icon rounded fa-facebook"><span class="label">Facebook</span></a>
-                            </li>
-                            <li>
-                                <a class="icon rounded fa-twitter"><span class="label">Twitter</span></a>
-                            </li>
-                            <li>
-                                <a class="icon rounded fa-google-plus"><span class="label">Google+</span></a>
-                            </li>
-                            <li>
-                                <a class="icon rounded fa-linkedin"><span class="label">LinkedIn</span></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </footer>
-
         <script language="javascript">
             document.getElementById("rotulo").onchange = function () {
                 document.getElementById("uploadFile").value = this.value;
             };
-        </script>
-    </body>
-</html>
+            
+        <?php include_once 'footer.php';
+
+        

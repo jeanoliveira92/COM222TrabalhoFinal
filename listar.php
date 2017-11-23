@@ -242,42 +242,21 @@ $banco = new DAO();
                             </form>
                         </div>
 
-                        <div class="8u 12u$(medium)">
-                            heeeeeeeeeeeeeeeeeelou
+
+                        <!-- Exbição dos vinhos > -->
+
+                        <div class="8u 12u$(medium) row marginlabel">
+                            <div class="9u row marginlabel showvinho">
+                                <div class="3u">
+                                    <img src="images/rotulos/vinno.jpg">
+                                </div>  
+                            </div>
                         </div>
+                    </div>
                 </section>
             </div>
         </section>
 
-        <!-- Footer -->
-        <footer id="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="8u 12u$(medium)">
-                        <ul class="copyright">
-                            <li>&copy; VinumWeb. Todos os direitos reservados.</li>
-                            <li>Design base: <a href="http://templated.co">Templated</a></li>
-                            <li>Densenvolvedores: Jean, Mateus e Adam</li>
-                        </ul>
-                    </div>
-                    <div class="4u$ 12u$(medium)">
-                        <ul class="icons">
-                            <li>
-                                <a class="icon rounded fa-facebook"><span class="label">Facebook</span></a>
-                            </li>
-                            <li>
-                                <a class="icon rounded fa-twitter"><span class="label">Twitter</span></a>
-                            </li>
-                            <li>
-                                <a class="icon rounded fa-google-plus"><span class="label">Google+</span></a>
-                            </li>
-                            <li>
-                                <a class="icon rounded fa-linkedin"><span class="label">LinkedIn</span></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    </body>
-</html>
+        <?php
+        include_once 'footer.php';
+        

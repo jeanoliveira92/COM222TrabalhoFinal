@@ -1296,3 +1296,11 @@ input:checked ~ label {
 .marginlabel{
     margin-top: 20px;
 }
+
+.showvinho{
+    height: 250px;    
+}
+
+.showvinho > div > img{
+    height: 100%;
+}
