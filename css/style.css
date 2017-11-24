@@ -573,9 +573,9 @@ ol li {
 }
 
 ul {
-    list-style: disc;
-    margin: 0 0 2em 0;
-    padding-left: 1em;
+    //list-style: disc;
+    //margin: 0 0 2em 0;
+    //padding-left: 1em;
 }
 
 ul li {
@@ -971,9 +971,9 @@ body.landing #header nav a {
 }
 
 #header nav > ul {
-    list-style: none;
-    margin: 0;
-    padding-left: 0;
+    /list-style: none;
+    /margin: 0;
+    /padding-left: 0;
 }
 
 #header nav > ul > li {
@@ -1308,11 +1308,16 @@ input:checked ~ label {
     margin-top: 20px;
 }
 
+.painel{
+    padding-right: 15px !important;
+}
+
 .showvinho{
     height: 250px;
     padding: 0px !important;
     margin: 0px !important;
-    margin-left: 10px !important;
+    width: calc(50% - 20px);
+    margin-left: 20px !important;
     -webkit-box-shadow: 0 0 7px 0 rgba(50,50,50,0.15);
     box-shadow: 0 0 7px 0 rgba(50,50,50,0.15);    
 }
@@ -1321,14 +1326,14 @@ input:checked ~ label {
     -webkit-box-shadow: spx 0px 10px rgba(50,50,50,0.15);
     box-shadow: 5px 0px 10px rgba(50,50,50,0.15);    
 }
-.showvinho ul{
+.showvinho ul:first-child{
     padding-top: 15px;
     list-style-type: none;
     font-size: 16px;
 }
 
-.showvinho ul li span{
-    font-size: 20px;
+.divcontent > ul li span{
+    font-weight: 600;
 }
 
 .showvinho:hover{
@@ -1346,6 +1351,8 @@ input:checked ~ label {
     background-position: top center; 
     background-size: cover;
 }
+
+
 .showvinho > div > img{
     height: 100%;
     padding: 0px;
@@ -1353,3 +1360,48 @@ input:checked ~ label {
     margin-left: auto;
     margin-right: auto;
 }   
+
+.reg {
+    list-style:none;
+}
+
+.reg2 {
+    list-style:none;
+    font-size: 12px;
+}
+
+.reg li, .reg2 li { display: inline; }
+
+.reg li span, .reg2 li span{
+    padding-bottom: 5px;
+}
+
+.divcontent{
+    width: calc(100% - 170px);
+    position: relative;
+    height: 100%;
+}
+
+.average{
+    position: absolute;
+    padding-bottom: 15px;
+    bottom: 0px;
+    left: 0px;
+    padding-left: 1em;
+}
+
+.ratingbottom{
+    position: relative;
+    padding-top: 0.5em;
+}
+
+
+.ratingbottom p{
+    margin: 0px;
+    margin-bottom: 0.2em;
+}
+
+.ratingbottom span{
+    font-size: 32px;
+    font-weight: 100;
+}

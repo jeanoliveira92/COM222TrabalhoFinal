@@ -27,7 +27,7 @@ if (( isset($_COOKIE["email"]) && isset($_COOKIE["email"])) && (!$_SESSION['id']
     </noscript>
 </head>
 <body class="landing">
-<?php include_once("navMenu.php"); ?>
+    <?php include_once("navMenu.php"); ?>
     <!-- Banner -->
     <section id="banner">
         <h2>Bem vindo ao VinumWeb</h2>

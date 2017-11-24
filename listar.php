@@ -54,9 +54,9 @@ $banco = new DAO();
             <div class="container-full nomargin">
                 <section>
                     <div class="row">
-                        <div class="4u 12u$(Medium)">
+                        <div class="3u 12u$(Medium) painel">
                             <form action="cadastro_vinho.php" enctype="multipart/form-data" method="POST">
-                                <div class="12u$ row">
+                                <div class="12u$ row" >
                                     <div class="12u$">
                                         <h3>Tipo de vinho</h3>
                                     </div>
@@ -243,24 +243,69 @@ $banco = new DAO();
                         </div>
 
                         <!-- Exbição dos vinhos > -->
-                        <div class="8u 12u$(medium) row">
-                            <div class="12u row showvinho">
-                                <div style="background-image: URL(images/rotulos/vinno.jpg)">
-                                    
+                        <div class="9u 6u$(medium) row">
+                            <div class="6u row showvinho">
+                                <div style="background-image: URL(images/rotulos/d3f39da64b37a43f87775c256821f9f3.jpg)">
                                 </div>  
-                                <div>
+                                <div class="divcontent">
                                     <ul>
                                         <li>Caballo Loco</li>
-                                        <li><span>Grand Cru Apalta 2012</span></li>
+                                        <li><span>Ahueaheuah AHuaehuaeh</span></li>
                                     </ul>
+                                    <ul class="reg">
+                                        <li>Brasil</li>
+                                        <li><span>.</span>  </li>
+                                        <li>Sul de Minas</li>
+                                    </ul>
+                                    <div class="average">
+                                        <div class="ratingbottom">
+                                            <p>Avaliação Média</p>
+                                            <ul class="reg2 ">
+                                                <li><span>4.5</span></li>
+                                                <li>2890 avaliações</li>
+                                            </ul>
+                                        </div>
+                                        <div class="ratingbottom">
+                                            <p>Preço Medio</p>
+                                            <span>R$ 1200.00</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="6u row showvinho">
+                                <div style="background-image: URL(images/rotulos/d3f39da64b37a43f87775c256821f9f3.jpg)">
+                                </div>  
+                                <div class="divcontent">
+                                    <ul>
+                                        <li>Caballo Loco</li>
+                                        <li><span>Ahueaheuah AHuaehuaeh</span></li>
+                                    </ul>
+                                    <ul class="reg">
+                                        <li>Brasil</li>
+                                        <li><span>.</span>  </li>
+                                        <li>Sul de Minas</li>
+                                    </ul>
+                                    <div class="average">
+                                        <div class="ratingbottom">
+                                            <p>Avaliação Média</p>
+                                            <ul class="reg2 ">
+                                                <li><span>4.5</span></li>
+                                                <li>2890 avaliações</li>
+                                            </ul>
+                                        </div>
+                                        <div class="ratingbottom">
+                                            <p>Preço Medio</p>
+                                            <span>R$ 1200.00</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </section>
             </div>
         </section>
+    </div>
+</section>
 
-        <?php
-        include_once 'footer.php';
-        
+<?php
+include_once 'footer.php';
