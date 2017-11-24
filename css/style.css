@@ -246,8 +246,8 @@ input[type="password"]:focus,
 input[type="email"]:focus,
 select:focus,
 textarea:focus {
-     aborder-color: #383b43;
-     box-shadow: 0 0 0 1px #c7b7b7;
+    aborder-color: #383b43;
+    box-shadow: 0 0 0 1px #c7b7b7;
 }
 
 .select-wrapper {
@@ -1257,7 +1257,7 @@ option:active, option:hover, option:visited{
 .alert-danger {
     color: #a94442;
     background-color: #f2dede;
-    
+
     border: 1px solid #ebccd1;
     padding: 15px;
     margin-bottom: 20px;
@@ -1293,14 +1293,63 @@ input:checked ~ label {
     font-weight: 300;
 }
 
+.container-full{
+    margin-left: auto;
+    margin-right: auto;
+    width: 95%;
+}
+
+.row{
+    margin: 0px !important;
+    padding: 0px !important;
+}
+
 .marginlabel{
     margin-top: 20px;
 }
 
 .showvinho{
-    height: 250px;    
+    height: 250px;
+    padding: 0px !important;
+    margin: 0px !important;
+    margin-left: 10px !important;
+    -webkit-box-shadow: 0 0 7px 0 rgba(50,50,50,0.15);
+    box-shadow: 0 0 7px 0 rgba(50,50,50,0.15);    
 }
 
+.showvinho img{
+    -webkit-box-shadow: spx 0px 10px rgba(50,50,50,0.15);
+    box-shadow: 5px 0px 10px rgba(50,50,50,0.15);    
+}
+.showvinho ul{
+    padding-top: 15px;
+    list-style-type: none;
+    font-size: 16px;
+}
+
+.showvinho ul li span{
+    font-size: 20px;
+}
+
+.showvinho:hover{
+    -webkit-box-shadow:0 0 15px 0 rgba(50,50,50,0.3);
+    box-shadow:0 0 15px 0 rgba(50,50,50,0.3)
+}
+
+.showvinho > div:first-child{
+    padding: 0px;
+    margin: 0px;
+    overflow: hidden;
+    width: 170px;
+    height: 250px;
+    background-repeat: no-repeat;
+    background-position: top center; 
+    background-size: cover;
+}
 .showvinho > div > img{
     height: 100%;
-}
+    padding: 0px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}   

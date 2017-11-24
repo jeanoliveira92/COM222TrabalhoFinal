@@ -51,10 +51,10 @@ $banco = new DAO();
         <?php include_once("navMenu.php"); ?>
         <!-- Main -->
         <section id="main" class="wrapper">
-            <div class="container">
+            <div class="container-full nomargin">
                 <section>
-                    <div class="row uniform 50%">
-                        <div class="4u 12u$(Medium) row marginlabel">
+                    <div class="row">
+                        <div class="4u 12u$(Medium)">
                             <form action="cadastro_vinho.php" enctype="multipart/form-data" method="POST">
                                 <div class="12u$ row">
                                     <div class="12u$">
@@ -242,14 +242,18 @@ $banco = new DAO();
                             </form>
                         </div>
 
-
                         <!-- Exbição dos vinhos > -->
-
-                        <div class="8u 12u$(medium) row marginlabel">
-                            <div class="9u row marginlabel showvinho">
-                                <div class="3u">
-                                    <img src="images/rotulos/vinno.jpg">
+                        <div class="8u 12u$(medium) row">
+                            <div class="12u row showvinho">
+                                <div style="background-image: URL(images/rotulos/vinno.jpg)">
+                                    
                                 </div>  
+                                <div>
+                                    <ul>
+                                        <li>Caballo Loco</li>
+                                        <li><span>Grand Cru Apalta 2012</span></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>

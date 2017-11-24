@@ -58,8 +58,32 @@ function buscaUsuario($id) {
 		}
 	}
 
-	function exibeAvaliacoes() {
+	function exibeHarmonizacoes() {
 		$idvinho = $_GET['id'];
+		$database = new DAO();
+		$database->buscar('harmonizacao',array('alimento'));
+		$database->where(array("idvinho=".$idvinho));
+		$harm = $database->executar();
+
+		if($database->numLinhasAfetadas($harm)==0) {
+			echo "<h4>Nenhuma harmonização com esse vinho cadastrada.</h4>";
+		} else {
+			$count = $database->numLinhasAfetadas($harm);
+			
+			if($count < 7) {
+				echo '<ul><h3>';
+				while($alim = $harm->fetch_assoc()) {
+					echo '<li>'.$alim['alimento'].'</li>';
+				}
+				echo '</h3><ul>';
+			} else {
+				echo '<ul><h4>';
+				while($alim = $harm->fetch_assoc()) {
+					echo '<li>'.$alim['alimento'].'</li>';
+				}
+				echo '</h4><ul>';
+			}
+		}
 	}
 >>>>>>> 285d08e0cd4913b56e8710e50e592aca9b1d5777
 ?>
@@ -186,19 +210,7 @@ function buscaUsuario($id) {
 						<section>
 							<h2>Alimentos harmonizantes:</h2>
 							<?php
-								$avaliacoes = buscaAvaliacoes();
-								if($avaliacoes != NULL) {
-									while($av = $avaliacoes->fetch_assoc()) {
-										$pessoa = buscaUsuario($av['idusuario']);
-
-										if($pessoa !== NULL) {
-											echo '<blockquote><h4><a href="">'.$pessoa['nome'].'</a> avaliou em '.$av['nota'].':</h4>';
-											echo '"'.$av['opiniao'].'"</blockquote>';
-										}
-									}
-								} else {
-									echo "<h4>Esse vinho ainda não foi avaliado.</h4>";
-								}
+								exibeHarmonizacoes();
 							?>
 						</section>
 					</div>
@@ -213,7 +225,7 @@ function buscaUsuario($id) {
 										$pessoa = buscaUsuario($av['idusuario']);
 
 										if($pessoa !== NULL) {
-											echo '<blockquote><h4><a href="">'.$pessoa['nome'].'</a> avaliou em '.$av['nota'].':</h4>';
+											echo '<blockquote><h4><a href="userreviews.php?usr='.$pessoa['id'].'">'.$pessoa['nome'].'</a> avaliou em '.$av['nota'].':</h4>';
 											echo '"'.$av['opiniao'].'"</blockquote>';
 										}
 									}
@@ -226,6 +238,19 @@ function buscaUsuario($id) {
 				</div>
 			</div>
 			</section>
+<<<<<<< HEAD
+			<?php
+				// O formulário de avaliacao só será exibido caso o usuario esteja logado
+				session_start();
+				$_SESSION['nome'] = 'gogogo';
+				$_SESSION['id'] = 1;
+				if(isset($_SESSION['nome'])){
+					include_once('avaliacao.php');
+				}
+			?>
+		</body>
+</html>
+=======
 		<!-- Three -->
 			<section id="three" class="wrapper style2 special">
 				<div class="container">
@@ -285,3 +310,4 @@ function buscaUsuario($id) {
             </div>
         </section>
         <?php include_once 'footer.php';
+>>>>>>> 875a9d2bfd42800403149b5aa25ca89dca4860d3
