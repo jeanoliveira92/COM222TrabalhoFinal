@@ -33,8 +33,33 @@
             return $usuario->fetch_assoc();
         }
     }
-    function exibeAvaliacoes() {
+    
+    function exibeHarmonizacoes() {
         $idvinho = $_GET['id'];
+        $database = new DAO();
+        $database->buscar('harmonizacao',array('alimento'));
+        $database->where(array("idvinho=".$idvinho));
+        $harm = $database->executar();
+
+        if($database->numLinhasAfetadas($harm)==0) {
+            echo "<h4>Nenhuma harmonização com esse vinho cadastrada.</h4>";
+        } else {
+            $count = $database->numLinhasAfetadas($harm);
+            
+            if($count < 7) {
+                echo '<ul><h3>';
+                while($alim = $harm->fetch_assoc()) {
+                    echo '<li>'.$alim['alimento'].'</li>';
+                }
+                echo '</h3><ul>';
+            } else {
+                echo '<ul><h4>';
+                while($alim = $harm->fetch_assoc()) {
+                    echo '<li>'.$alim['alimento'].'</li>';
+                }
+                echo '</h4><ul>';
+            }
+        }
     }
 ?>
 <html lang="en">
@@ -118,18 +143,7 @@
                         <section>
                             <h2>Alimentos harmonizantes:</h2>
                             <?php
-                                $avaliacoes = buscaAvaliacoes();
-                                if($avaliacoes != NULL) {
-                                    while($av = $avaliacoes->fetch_assoc()) {
-                                        $pessoa = buscaUsuario($av['idusuario']);
-                                        if($pessoa !== NULL) {
-                                            echo '<blockquote><h4><a href="">'.$pessoa['nome'].'</a> avaliou em '.$av['nota'].':</h4>';
-                                            echo '"'.$av['opiniao'].'"</blockquote>';
-                                        }
-                                    }
-                                } else {
-                                    echo "<h4>Esse vinho ainda não foi avaliado.</h4>";
-                                }
+                                exibeHarmonizacoes();
                             ?>
                         </section>
                     </div>
