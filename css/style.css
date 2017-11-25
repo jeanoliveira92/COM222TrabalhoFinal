@@ -1322,11 +1322,29 @@ input:checked ~ label {
     box-shadow: 0 0 7px 0 rgba(50,50,50,0.15);    
 }
 
-.showvinho img{
+.showvinho *:hover{
+    color: #341414;
+}
+
+.showvinho a{
+    padding: 0px;
+    margin: 0px; 
+}
+
+.showvinhoimg{
+    padding: 0px;
+    margin: 0px;
+    overflow: hidden;
+    width: 170px;
+    height: 250px;
+    background-repeat: no-repeat;
+    background-position: top center; 
+    background-size: cover;
     -webkit-box-shadow: spx 0px 10px rgba(50,50,50,0.15);
     box-shadow: 5px 0px 10px rgba(50,50,50,0.15);    
 }
-.showvinho ul:first-child{
+
+.ultitulo{
     padding-top: 15px;
     list-style-type: none;
     font-size: 16px;
@@ -1339,27 +1357,7 @@ input:checked ~ label {
 .showvinho:hover{
     -webkit-box-shadow:0 0 15px 0 rgba(50,50,50,0.3);
     box-shadow:0 0 15px 0 rgba(50,50,50,0.3)
-}
-
-.showvinho > div:first-child{
-    padding: 0px;
-    margin: 0px;
-    overflow: hidden;
-    width: 170px;
-    height: 250px;
-    background-repeat: no-repeat;
-    background-position: top center; 
-    background-size: cover;
-}
-
-
-.showvinho > div > img{
-    height: 100%;
-    padding: 0px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}   
+} 
 
 .reg {
     list-style:none;
