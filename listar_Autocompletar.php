@@ -4,7 +4,7 @@ include_once 'listar_Dados.php';
 
 while ($row = $result->fetch_assoc()) {
 echo "
-    <div class = '6u row showvinho'>
+    <div class = '6u 12u$(medium) row showvinho'>
         <a href = 'showwine.php?id=" .$row['id'] . "'>
             <div class = 'showvinhoimg' style = 'background-image: URL(images/rotulos/" .$row['rotulo'] . ")'>
             </div>
