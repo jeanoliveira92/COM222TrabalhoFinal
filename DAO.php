@@ -34,6 +34,90 @@ class DAO implements iDAO{
             $this->sql = rtrim($this->sql,', ').' FROM '.$nometabela;
         }
   }
+
+  /**
+  * Os atributos que tem lista antes sao arrays, os demais, valores.
+  *
+  */
+  public function buscarVinhos($precomin,$precomax,$listaTipoVinho,$listaUvas,$avaliacao,$listaPaises,$listaEstilos,$listaComida) {
+
+    $and = true;
+
+    //Consulta base: Leva em consideracao precos e avaliacao
+    $this->sql = 'SELECT * FROM vinho where (preco>='.$precomin.' AND preco<='.$precomax.') AND avaliacao >= '.$avaliacao;
+
+    // Inserir tipos de vinho, caso necessario
+    if($listaTipoVinho != NULL) {
+      if($and == true){
+        $this->sql .= ' AND';
+      } else {
+        $and = true;
+      }
+
+      $this->sql .= ' (';
+      foreach ($listaTipoVinho as $tipo) {
+        $this->sql .= "tipo='".$tipo."' or ";
+      }
+      $this->sql = rtrim($this->sql,' or ');
+      $this->sql .= ')';
+    }
+
+    // Inserir lista de uvas, caso necessario
+    if($listaUvas != NULL) {
+      if($and == true){
+        $this->sql .= ' AND';
+      } else {
+        $and = true;
+      }
+      $this->sql .= ' (';
+      foreach ($listaUvas as $uva) {
+        $this->sql .= "tipouva='".$uva."' or ";
+      }
+      $this->sql = rtrim($this->sql,' or ');
+      $this->sql .= ')';
+    }
+
+    // Inserir lista de paises, caso necessario
+    if($listaPaises != NULL) {
+      if($and == true){
+        $this->sql .= ' AND';
+      } else {
+        $and = true;
+      }
+      $this->sql .= ' (';
+      foreach ($listaPaises as $pais) {
+        $this->sql .= "paisorigem='".$pais."' or ";
+      }
+      $this->sql = rtrim($this->sql,' or ');
+      $this->sql .= ')';
+    }
+
+    // Inserir lista de estilos, caso necessario
+    if($listaEstilos != NULL) {
+      if($and == true){
+        $this->sql .= ' AND';
+      } else {
+        $and = true;
+      }
+      $this->sql .= ' (';
+      foreach ($listaEstilos as $estilo) {
+        $this->sql .= "estilo='".$estilo."' or ";
+      }
+      $this->sql = rtrim($this->sql,' or ');
+      $this->sql .= ')';
+    }
+
+    // Inserir lista de harmonizacoes, caso necessario
+    if($listaComida != NULL) {
+      $this->sql .= ' AND id in ( select idvinho from harmonizacao where ';
+
+      foreach ($listaComida as $comida) {
+        $this->sql .= "alimento='".$comida."' or ";
+      }
+      $this->sql = rtrim($this->sql,' or ');
+      $this->sql .= ')';
+    }
+  }
   
   /**
    * Insere uma tupla em derterminada tabela do banco
@@ -99,9 +183,13 @@ class DAO implements iDAO{
    * Adiciona um critério de ordenação a consulta SQL
    * @param type $atributo atributo de ordenacao
    */
-  public function ordenacao($atributo)
+  public function ordenacao($atributo,$asc)
   {
-    $this->sql .= ' ORDER BY '.$atributo.' asc';    
+       if($asc == true){
+        $this->sql .= ' ORDER BY '.$atributo.' asc'; 
+      } else {
+        $this->sql .= ' ORDER BY '.$atributo.' desc'; 
+      }
   }
 
   /**

@@ -62,7 +62,7 @@
         }
     }
 ?>
-<html lang="en">
+<html>
     <head>
         <title>vw | <?php echo $vinho['nome']; ?></title>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
