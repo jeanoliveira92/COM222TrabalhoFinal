@@ -1,68 +1,41 @@
 <?php
-$consulta = array();
 
-// Limitador de preços
-if(isset($_GET['low']) && isset($_GET['upp'])){
-    array_push($consulta, "preco >'".$_GET['low']."' AND preco < '".$_GET['upp']."'");
+include_once 'listar_Dados.php';
+
+while ($row = $result->fetch_assoc()) {
+echo "
+    <div class = '6u row showvinho'>
+        <a href = 'showwine.php?id=" .$row['id'] . "'>
+            <div class = 'showvinhoimg' style = 'background-image: URL(images/rotulos/" .$row['rotulo'] . ")'>
+            </div>
+        </a>
+        <div class = 'divcontent'>
+            <a href = 'showwine.php?id=" .$row['id'] . "'>
+                <ul class = 'ultitulo'>
+                    <li>" .$row['produtor'] . "</li>
+                    <li><span>" .$row['nome'] . "</span></a></li>
+                </ul>                         
+            </a>
+            <ul class='reg'>
+                <li>" .$row['paisorigem'] . "</li>
+                <li><span>.</span>  </li>
+                <li>" .$row['regiao'] . "</li>
+            </ul>
+
+            <div class='average'>
+                <div class='ratingbottom'>
+                    <p>Avaliação Média</p>
+                    <ul class='reg2 '>
+                        <li><span>" .$row['avaliacao'] . "</span></li>
+                        <li>2890 avaliações</li>
+                    </ul>
+                </div>
+                <div class='ratingbottom'>
+                    <p>Preço Medio</p>
+                    <span>R$ " . number_format($row['preco'], 2, '.', '') ."
+                    </span>
+            </div>
+        </div>
+    </div>
+</div>";
 }
-
-// Verifica a avaliação minima
-if(isset($_GET['rate'])){
-    array_push($consulta, "avaliacao >='".$_GET['rate']."'");
-}
-
-// Verifica se veio algum tipo, se veio, for uma variavel (index), ou vetor(listar)
-if(isset($_GET['tipo']) && is_array($_GET['tipo'])){    
-    // Faz loop pelo array dos tipos
-    foreach($_GET['tipo'] as $var){
-        array_push($consulta, "tipo='".$var."'");
-        $tipo = $var;
-    }
-} else{
-    array_push($consulta, "tipo='".$_GET['tipo']."'");
-}
-
-// Verifica se veio algum tipo de uva
-if(isset($_GET['uva'])){    
-    // Faz loop pelo array dos tipos
-    foreach($_GET['uva'] as $var){
-        array_push($consulta, "tipouva='".$var."'");
-    }
-}
-
-// Verifica se veio algum pais
-if(isset($_GET['pais'])){    
-    // Faz loop pelo array dos tipos
-    foreach($_GET['pais'] as $var){
-        array_push($consulta, "paisorigem='".$var."'");
-    }
-}
-
-// Verifica se veio algum estilo
-if(isset($_GET['estilo'])){    
-    // Faz loop pelo array dos tipos
-    foreach($_GET['estilo'] as $var){
-        array_push($consulta, "estilo='".$var."'");
-    }
-}
-
-
-// Verifica se veio algum tipo de alimento
-if(isset($_GET['alimento'])){    
-    // Faz loop pelo array dos tipos
-    foreach($_GET['alimento'] as $var){
-        array_push($consulta, "alimento='".$var."'");
-    }
-}
-
-include_once 'DAO.php';
-$banco = new DAO();
-
-$banco->buscar("vinho");
-$banco->where($consulta);
-
-$result = $banco->executar();
-
-//echo json_encode($consulta);
-echo $banco->sql;
-//echo $banco->numLinhasAfetadas($result);

@@ -1,7 +1,7 @@
 <?php
 session_start();
 include_once 'session.php';
-include_once 'listar_Autocompletar.php';
+include_once 'listar_Dados.php';
 ?>
 
 <html lang="pt-br">
@@ -15,16 +15,29 @@ include_once 'listar_Autocompletar.php';
         <script src="js/jquery.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
-                $("input[name='tipo[]']").change(function () {
-                    $.getJSON(
-                            'listar_Autocompletar.php',
-                            {tipo: $(this).val()},
-                            function (json)
-                            {
-                                alert("k");
+                // Dispara a funcao atualizar dados quando qualquer check box muda de estado
+                $('input').change(trocaLista);
+                // Dispara quando o mouse é disclicado sobre um dos botoes de controle do slider
+                $('.noUi-handle').mouseup(trocaLista);
+                // Funcao para atualizar dados na tela
+                function trocaLista() {
+
+                    $('form').submit(function () {
+                        var dados = $(this).serialize();
+                        $.ajax({
+                            url: 'listar_Autocompletar.php',
+                            method: 'get',
+                            dataType: 'html',
+                            data: dados,
+                            success: function (data) {
+                                $('#vinhos').empty().html(data);
                             }
-                    );
-                });
+                        });
+                        return false;
+                    });
+                    // Submete os dados do formulario
+                    $('form').trigger('submit');
+                };
             });
         </script>
         <script src="js/skel.min.js"></script>
@@ -95,9 +108,9 @@ include_once 'listar_Autocompletar.php';
                                 <div class="12u$ marginlabel">
                                     <h3>Intervalo de preço</h3>
                                     <script src="js/nouislider.min.js" id="intervalo" ></script>
-                                    <div id="lower-value"  class="3u" style="position: relative; float: left;padding-right: 30px; padding-bottom: 10px; text-align: right;"></div>
-                                    <div id="price-range"  class="6u" style="position: relative; float: left;"></div>
-                                    <div id="upper-value"  class="3u" style="position: relative; float: left;padding-left: 30px; text-align: left;"></div>
+                                    <div id="lower-value"  style="position: relative; float: left; width: 20%; padding-bottom: 10px; text-align: left;"></div>
+                                    <div id="price-range"  style="position: relative; float: left; width: 55%; "></div>
+                                    <div id="upper-value"  style="position: relative; float: left; width: 25%; padding-bottom: 10px; text-align: right;"></div>
                                     <script src="js/nouislider.min.js"></script>
                                     <link href="css/nouislider.min.css" rel="stylesheet">
 
@@ -105,7 +118,6 @@ include_once 'listar_Autocompletar.php';
                                     <input type="hidden" id="upp" name="upp" />
                                     <script>
             var priceSlider = document.getElementById('price-range');
-
             noUiSlider.create(priceSlider, {
                 start: [25, 100],
                 connect: true,
@@ -126,19 +138,16 @@ include_once 'listar_Autocompletar.php';
                     'max': 1300
                 }
             });
-
             var pricenodes = [
                 document.getElementById('lower-value'), // 0
                 document.getElementById('upper-value')  // 1
             ];
-
             // Display the slider value and how far the handle moved
             // from the left edge of the slider.
             priceSlider.noUiSlider.on('update', function (values, handle, unencoded, isTap, positions) {
                 pricenodes[handle].innerHTML = "R$ " + parseInt(values[handle]);
                 if (handle == 0) {
                     document.getElementById('low').value = priceSlider.noUiSlider.get()[0];
-
                 } else if (handle == 1) {
                     document.getElementById('upp').value = priceSlider.noUiSlider.get()[1];
                 }
@@ -148,12 +157,11 @@ include_once 'listar_Autocompletar.php';
                                 <input type="hidden" id="rate" name="rate" />
                                 <div class="12u$ marginlabel">
                                     <h3>Avaliação dos usuários</h3>
-                                    <div id="rate-value" class="3u" style="position: relative; float: left;padding-bottom: 10px; text-align: center;">1000</div>
-                                    <div id="rate-range" class="6u" style="position: relative; float: left;"></div>
-                                    <div class="3u" style="position: relative; float: left;padding-left: 30px; text-align: center">5.0</div>
+                                    <div id="rate-value" style="position: relative; float: left; width: 20%; padding-bottom: 10px; text-align: center;">1.0</div>
+                                    <div id="rate-range" style="position: relative; float: left; width: 55%; "></div>
+                                    <div style="position: relative; float: left;padding-left: 30px; width: 25%; padding-bottom: 10px; text-align: center">5.0</div>
                                     <script>
                                         var rateSlider = document.getElementById('rate-range');
-
                                         noUiSlider.create(rateSlider, {
                                             start: [3],
                                             snap: true, // salto a salta elemento
@@ -170,7 +178,6 @@ include_once 'listar_Autocompletar.php';
                                         var ratenodes = [
                                             document.getElementById('rate-value'), // 0
                                         ];
-
                                         // Display the slider value and how far the handle moved
                                         // from the left edge of the slider.
                                         rateSlider.noUiSlider.on('update', function (values, handle, unencoded, isTap, positions) {
@@ -247,12 +254,12 @@ include_once 'listar_Autocompletar.php';
                                     }
                                     ?>
                                 </div>
-                                <input type="submit" value="eita nois">
+                                <!-- <input type="submit" value="eita nois"> -->
                             </form>
                         </div>
 
                         <!-- Exbição dos vinhos > -->
-                        <div class="9u 6u$(medium) row">
+                        <div class="9u 6u$(medium) row" id="vinhos">
                             <?php
                             while ($row = $result->fetch_assoc()) {
                                 ?>
