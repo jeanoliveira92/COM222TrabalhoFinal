@@ -13,6 +13,20 @@ include_once 'listar_Autocompletar.php';
         <meta name="keywords" content="" />
         <!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
         <script src="js/jquery.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("input[name='tipo[]']").change(function () {
+                    $.getJSON(
+                            'listar_Autocompletar.php',
+                            {tipo: $(this).val()},
+                            function (json)
+                            {
+                                alert("k");
+                            }
+                    );
+                });
+            });
+        </script>
         <script src="js/skel.min.js"></script>
         <!-- conflito
         <script src="js/skel-layers.min.js"></script>
@@ -34,14 +48,7 @@ include_once 'listar_Autocompletar.php';
                 padding: 0px 0 0 0.5em;
             }
         </style>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $("#nome").autocomplete("cadastro_vinho_Autocompletar.php", {
-                    width: 592,
-                    selectFirst: false
-                });
-            });
-        </script>
+
 
         <script src="js/init.js"></script>
 
@@ -54,13 +61,13 @@ include_once 'listar_Autocompletar.php';
                 <section>
                     <div class="row">
                         <div class="3u 12u$(Medium) painel">
-                            <form action="cadastro_vinho.php" enctype="multipart/form-data" method="POST">
+                            <form action="listar_Autocompletar.php" method="GET">
                                 <div class="12u$ row" >
                                     <div class="12u$">
                                         <h3>Tipo de vinho</h3>
                                     </div>
                                     <div class="4u 12u$(medium)">
-                                        <input type="checkbox" id="vermelho" name="tipo[]" cheked="">
+                                        <input type="checkbox" id="vermelho" name="tipo[]" value="vermelho">
                                         <label for="vermelho" class="checklabel">Vermelho</label>
                                     </div>
 
@@ -93,43 +100,52 @@ include_once 'listar_Autocompletar.php';
                                     <div id="upper-value"  class="3u" style="position: relative; float: left;padding-left: 30px; text-align: left;"></div>
                                     <script src="js/nouislider.min.js"></script>
                                     <link href="css/nouislider.min.css" rel="stylesheet">
+
+                                    <input type="hidden" id="low" name="low" />
+                                    <input type="hidden" id="upp" name="upp" />
                                     <script>
-                                        var priceSlider = document.getElementById('price-range');
+            var priceSlider = document.getElementById('price-range');
 
-                                        noUiSlider.create(priceSlider, {
-                                            start: [25, 100],
-                                            connect: true,
-                                            snap: true, // salto a salta elemento
-                                            range: {
-                                                'min': 0,
-                                                // 0% - 49% [0-100]
-                                                '1%': 2, '2%': 5, '3%': 7, '4%': 10, '5%': 12, '6%': 15, '7%': 17, '8%': 20, '9%': 22,
-                                                '10%': 25, '11%': 27, '12%': 30, '13%': 32, '14%': 35, '15%': 37, '16%': 40, '17%': 42, '18%': 45, '19%': 47,
-                                                '20%': 50, '21%': 52, '22%': 55, '23%': 57, '24%': 60, '25%': 62, '26%': 65, '27%': 67, '28%': 70, '29%': 72,
-                                                '30%': 75, '31%': 77, '32%': 80, '33%': 82, '34%': 85, '35%': 87, '36%': 90, '37%': 92, '38%': 95, '39%': 97,
-                                                '40%': 100, '41%': 110, '42%': 120, '43%': 130, '44%': 140, '45%': 150, '46%': 160, '47%': 170, '48%': 180, '49%': 190,
-                                                '50%': 200, '51%': 210, '52%': 220, '53%': 230, '54%': 240, '55%': 250, '56%': 260, '57%': 270, '58%': 280, '59%': 290,
-                                                '60%': 300, '61%': 310, '62%': 320, '63%': 330, '64%': 340, '65%': 350, '66%': 360, '67%': 370, '68%': 380, '69%': 390,
-                                                '70%': 400, '71%': 410, '72%': 420, '73%': 430, '74%': 440, '75%': 450, '76%': 460, '77%': 470, '78%': 480, '79%': 490,
-                                                '80%': 500, '81%': 510, '82%': 520, '83%': 530, '84%': 540, '85%': 550, '86%': 560, '87%': 570, '88%': 580, '89%': 590,
-                                                '90%': 600, '91%': 600, '92%': 650, '93%': 700, '94%': 750, '95%': 800, '96%': 900, '97%': 1000, '98%': 1100, '99%': 1200,
-                                                'max': 1300
-                                            }
-                                        });
+            noUiSlider.create(priceSlider, {
+                start: [25, 100],
+                connect: true,
+                snap: true, // salto a salta elemento
+                range: {
+                    'min': 0,
+                    // 0% - 49% [0-100]
+                    '1%': 2, '2%': 5, '3%': 7, '4%': 10, '5%': 12, '6%': 15, '7%': 17, '8%': 20, '9%': 22,
+                    '10%': 25, '11%': 27, '12%': 30, '13%': 32, '14%': 35, '15%': 37, '16%': 40, '17%': 42, '18%': 45, '19%': 47,
+                    '20%': 50, '21%': 52, '22%': 55, '23%': 57, '24%': 60, '25%': 62, '26%': 65, '27%': 67, '28%': 70, '29%': 72,
+                    '30%': 75, '31%': 77, '32%': 80, '33%': 82, '34%': 85, '35%': 87, '36%': 90, '37%': 92, '38%': 95, '39%': 97,
+                    '40%': 100, '41%': 110, '42%': 120, '43%': 130, '44%': 140, '45%': 150, '46%': 160, '47%': 170, '48%': 180, '49%': 190,
+                    '50%': 200, '51%': 210, '52%': 220, '53%': 230, '54%': 240, '55%': 250, '56%': 260, '57%': 270, '58%': 280, '59%': 290,
+                    '60%': 300, '61%': 310, '62%': 320, '63%': 330, '64%': 340, '65%': 350, '66%': 360, '67%': 370, '68%': 380, '69%': 390,
+                    '70%': 400, '71%': 410, '72%': 420, '73%': 430, '74%': 440, '75%': 450, '76%': 460, '77%': 470, '78%': 480, '79%': 490,
+                    '80%': 500, '81%': 510, '82%': 520, '83%': 530, '84%': 540, '85%': 550, '86%': 560, '87%': 570, '88%': 580, '89%': 590,
+                    '90%': 600, '91%': 600, '92%': 650, '93%': 700, '94%': 750, '95%': 800, '96%': 900, '97%': 1000, '98%': 1100, '99%': 1200,
+                    'max': 1300
+                }
+            });
 
-                                        var pricenodes = [
-                                            document.getElementById('lower-value'), // 0
-                                            document.getElementById('upper-value')  // 1
-                                        ];
+            var pricenodes = [
+                document.getElementById('lower-value'), // 0
+                document.getElementById('upper-value')  // 1
+            ];
 
-                                        // Display the slider value and how far the handle moved
-                                        // from the left edge of the slider.
-                                        priceSlider.noUiSlider.on('update', function (values, handle, unencoded, isTap, positions) {
-                                            pricenodes[handle].innerHTML = "R$ " + parseInt(values[handle]);
-                                        });
+            // Display the slider value and how far the handle moved
+            // from the left edge of the slider.
+            priceSlider.noUiSlider.on('update', function (values, handle, unencoded, isTap, positions) {
+                pricenodes[handle].innerHTML = "R$ " + parseInt(values[handle]);
+                if (handle == 0) {
+                    document.getElementById('low').value = priceSlider.noUiSlider.get()[0];
+
+                } else if (handle == 1) {
+                    document.getElementById('upp').value = priceSlider.noUiSlider.get()[1];
+                }
+            });
                                     </script>
                                 </div>
-
+                                <input type="hidden" id="rate" name="rate" />
                                 <div class="12u$ marginlabel">
                                     <h3>Avaliação dos usuários</h3>
                                     <div id="rate-value" class="3u" style="position: relative; float: left;padding-bottom: 10px; text-align: center;">1000</div>
@@ -160,16 +176,10 @@ include_once 'listar_Autocompletar.php';
                                         rateSlider.noUiSlider.on('update', function (values, handle, unencoded, isTap, positions) {
                                             ratenodes[handle].innerHTML = parseFloat(values[handle]).toFixed(1);
                                             // rateSlider.noUiSlider.get();
-                                        });
-
-                                        function sliderValues() {
-                                            document.getElementById('low').value = priceSlider.noUiSlider.get()[0];
-                                            document.getElementById('upp').value = priceSlider.noUiSlider.get()[1];
                                             document.getElementById('rate').value = rateSlider.noUiSlider.get();
-                                        }
+                                        });
                                     </script>
                                 </div>
-
                                 <div class="12u$ row marginlabel">
                                     <div class="12u$">
                                         <h3>Uvas</h3>
@@ -180,7 +190,7 @@ include_once 'listar_Autocompletar.php';
 
                                     while ($row = $dado->fetch_assoc()) {
                                         echo "<div class='4u 12u$(medium)'>
-                                        <input type='checkbox' id='" . $row['tipouva'] . "' name='uva[]'>
+                                        <input type='checkbox' id='" . $row['tipouva'] . "' name='uva[]' value='" . $row['tipouva'] . "'>
                                         <label for='" . $row['tipouva'] . "' class='checklabel'>" . $row['tipouva'] . "</label>
                                     </div>";
                                     }
@@ -197,7 +207,7 @@ include_once 'listar_Autocompletar.php';
 
                                     while ($row = $dado->fetch_assoc()) {
                                         echo "<div class='4u 12u$(medium)'>
-                                        <input type='checkbox' id='" . $row['paisorigem'] . "' name='pais[]'>
+                                        <input type='checkbox' id='" . $row['paisorigem'] . "' value='" . $row['paisorigem'] . "'>
                                         <label for='" . $row['paisorigem'] . "' class='checklabel'>" . $row['paisorigem'] . "</label>
                                     </div>";
                                     }
@@ -214,7 +224,7 @@ include_once 'listar_Autocompletar.php';
 
                                     while ($row = $dado->fetch_assoc()) {
                                         echo "<div class='4u 12u$(medium)'>
-                                        <input type='checkbox' id='" . $row['estilo'] . "' name='estilo[]'>
+                                        <input type='checkbox' id='" . $row['estilo'] . "' name='estilo[]' value='" . $row['estilo'] . "'>
                                         <label for='" . $row['estilo'] . "' class='checklabel'>" . $row['estilo'] . "</label>
                                     </div>";
                                     }
@@ -231,13 +241,13 @@ include_once 'listar_Autocompletar.php';
 
                                     while ($row = $dado->fetch_assoc()) {
                                         echo "<div class='4u 12u$(medium)'>
-                                        <input type='checkbox' id='" . $row['alimento'] . "' name='alimento[]'>
+                                        <input type='checkbox' id='" . $row['alimento'] . "' name='alimento[]' value='" . $row['alimento'] . "'>
                                         <label for='" . $row['alimento'] . "' class='checklabel'>" . $row['alimento'] . "</label>
                                     </div>";
                                     }
                                     ?>
                                 </div>
-
+                                <input type="submit" value="eita nois">
                             </form>
                         </div>
 
@@ -274,7 +284,10 @@ include_once 'listar_Autocompletar.php';
                                             </div>
                                             <div class="ratingbottom">
                                                 <p>Preço Medio</p>
-                                                <span>R$ <?php echo  number_format($row['preco'], 2, '.', '');; ?></span>
+                                                <span>R$ <?php
+                                                    echo number_format($row['preco'], 2, '.', '');
+                                                    ;
+                                                    ?></span>
                                             </div>
                                         </div>
                                     </div>
