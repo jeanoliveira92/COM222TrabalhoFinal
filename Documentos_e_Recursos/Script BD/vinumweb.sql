@@ -33,7 +33,7 @@ create table usuario
 	id int not null AUTO_INCREMENT,
 	nome varchar(64) not null,
 	email varchar(64) not null unique,
-	senha varchar(50) not null,
+	senha varchar(64) not null,
 	primary key(id)
 );
 
@@ -48,6 +48,7 @@ create table vinhos_usuario
 
 create table avaliacao
 (
+	ordem int unique not null AUTO_INCREMENT,
 	idvinho int,
 	idusuario int,
 	nota float(2),
@@ -61,17 +62,16 @@ create table avaliacao
 DELIMITER $
 CREATE TRIGGER atualiza_avaliacao after INSERT ON avaliacao FOR EACH ROW
 BEGIN
-	update vinho set avaliacao = (avaliacao*numavaliacoes+new.nota*1)/numavaliacoes+1 where id=new.idvinho;
-	update vinho set numavaliacoes = numavaliacoes+1 where id = new.idvinho;
-END$
-
-DELIMITER $
-CREATE TRIGGER atualiza_avaliacao_att after UPDATE ON avaliacao FOR EACH ROW
-BEGIN
-	update vinho set avaliacao = (avaliacao*numavaliacoes-old.nota*1)/numavaliacoes-1 where id=old.idvinho;
-	update vinho set avaliacao = (avaliacao*numavaliacoes+new.nota*1)/numavaliacoes where id=new.idvinho;
-END$
---Apos alterada uma avaliacao, a avaliacao da tabela vinho deve ser atualizada
+	DECLARE numav int(11);
+	select numavaliacoes into numav from vinho where id=new.idvinho;
+	IF(numav < 1) THEN
+		UPDATE vinho SET avaliacao=new.nota where id=new.idvinho;
+		UPDATE vinho SET numavaliacoes=1 where id=new.idvinho;
+	ELSE
+		update vinho set avaliacao = (avaliacao*numavaliacoes+new.nota)/(numavaliacoes+1) where id=new.idvinho;
+		update vinho set numavaliacoes = (numavaliacoes+1) where id = new.idVinho;
+	END IF;
+END
 
 --Apos inserido um preco, essa procedure deve ser chamada para atualizar
 --o preco do vinho
@@ -81,9 +81,10 @@ BEGIN
 	DECLARE qtd bigint;
 	SELECT count(*) INTO qtd from vinhos_usuario where idvinho = cod_vinho;
 
-	update vinho set preco = (preco*qtd+valor)/(qtd+1) where id=cod_vinho;
+	IF(qtd != 1) THEN
+		update vinho set preco = (preco*(qtd-1)+valor)/(qtd) where id=cod_vinho;
+	END IF;
 END$
-
 DELIMITER ;
 
 --Obter as uvas do banco
