@@ -60,6 +60,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         //Criar DAO
         $banco = new DAO();
 
+        // remove o ponto no preço. Para não converter em decimal ao salvar no banco
+        $preco = str_replace(".", "", $preco);
+
         //Verificar se o vinho ja esta cadastrado no banco
         $banco->buscar('vinho', null);
         $banco->where(array("nome='" . $nome . "'"));
@@ -233,40 +236,40 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                                     <div class="alert-success" role="alert"><?php echo $Sucess ?></div>
                                 <?php } ?>
                             </div>
-                            <div class="6u 12u$(4)">
+                            <div class="6u 12u$(medium)">
                                 <label for="nome">Nome:</label>
                                 <input type="text" name="nome" id="nome" placeholder="Nome do vinho"  <?php if (isset($msg)) echo "value='" . $nome . "'" ?>>
                             </div>
 
-                            <div class="6u$ 12u$(4)">
+                            <div class="6u$ 12u$(medium)">
                                 <label for="produtor">Produtor:</label>
                                 <input type="text" min="4" name="produtor" id="produtor" placeholder="Nome do produtor" <?php if (isset($msg)) echo "value='" . $produtor . "'" ?>>
                             </div>
-                            <div class="6u 12u$(4)">
+                            <div class="6u 12u$(medium)">
                                 <label for="pais">Pais de origem:</label>
                                 <input type="text" name="pais" min="4" id="pais" placeholder="País de origem" <?php if (isset($msg)) echo "value='" . $pais . "'" ?>>
                             </div>
-                            <div class="6u$ 12u$(4)">
+                            <div class="6u$ 12u$(medium)">
                                 <label for="regiao">Região de origem:</label>
                                 <input type="text" name="regiao" min="4" id="regiao" placeholder="Região" <?php if (isset($msg)) echo "value='" . $regiao . "'" ?>>
                             </div>
-                            <div class="4u 12u$(3)">
+                            <div class="4u 12u$(medium)">
                                 <label for="tipouva">Tipo de uva:</label>
                                 <input type="text" name="tipouva" min="4" id="tipouva" placeholder="Tipo de uva" <?php if (isset($msg)) echo "value='" . $tipouva . "'" ?>>
                             </div>
-                            <div class="4u 12u$(3)">
+                            <div class="4u 12u$(medium)">
                                 <label for="estilo">Estilo:</label>
                                 <input type="text" id="estilo" min="4" name="estilo" placeholder="Estilo do vinho" <?php if (isset($msg)) echo "value='" . $estilo . "'" ?>>
                             </div>
-                            <div class="4u$ 12u$(3)">
-                                <label for="preco">Preço: ( Utilize ponto. Ex 10.00 )</label>
-                                <input type="text" name="preco"  min="4" id="preco" placeholder="Preço" <?php if (isset($msg)) echo "value='" . $preco . "'" ?>>
+                            <div class="4u$ 12u$(medium)">
+                                <label for="preco">Preço:</label>
+                                <input type="text" name="preco" min="4" id="preco" placeholder="Preço 1000,00" <?php if (isset($msg)) echo "value='" . $preco . "'" ?>>
                             </div>
-                            <div class="4u 12u$(3)">
+                            <div class="4u 12u$(medium)">
                                 <label for="harmonizacao">Harmoniza com:</label>
                                 <input type="text" id="harmonizacao" name="harmonizacao" placeholder="Comidas que combinam" <?php if (isset($msg)) echo "value='" . $harmonizacao . "'" ?>>
                             </div>
-                            <div class="4u 12u$(3)">
+                            <div class="4u 12u$(medium)">
                                 <label for="tipo">Tipo:</label>
                                 <select name="tipo" id="tipo">
                                     <option value="vermelho" <?php
@@ -298,25 +301,27 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                                     }
                                     ?>>Rosa</option>
                                     <option value="sobremesa" <?php
-                                            if (isset($msg)) {
-                                                if ($tipo == "sobremesa") {
-                                                    echo "selected";
-                                                }
-                                            }
-                                            ?>>Sobremesa</option>
+                                    if (isset($msg)) {
+                                        if ($tipo == "sobremesa") {
+                                            echo "selected";
+                                        }
+                                    }
+                                    ?>>Sobremesa</option>
                                     <option value="porto" <?php
-                                            if (isset($msg)) {
-                                                if ($tipo == "porto") {
-                                                    echo "selected";
-                                                }
-                                            }
-                                            ?>>Porto</option>
+                                    if (isset($msg)) {
+                                        if ($tipo == "porto") {
+                                            echo "selected";
+                                        }
+                                    }
+                                    ?>>Porto</option>
                                 </select>
                             </div>
-                            <div class="4u 12u$(3)">
-                                <label for="rotulo">Envie o rótulo:</label>
-                                <input id="uploadFile" type="text" placeholder="Choose File" disabled="disabled" />
-                                <div class="fileUpload button">
+                            <div class="4u 12u$(medium)">
+                                <div class="12u">
+                                    <label for="rotulo">Envie o rótulo:</label>
+                                    <input id="uploadFile" type="text" placeholder="Choose File" disabled="disabled" />
+                                </div>
+                                <div class="fileUpload button 4u 12u(medium)">
                                     <span>Upload</span>
                                     <input type="file" class="upload" name="rotulo" id="rotulo" />
                                 </div>
@@ -339,7 +344,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             document.getElementById("rotulo").onchange = function () {
                 document.getElementById("uploadFile").value = this.value;
             };
-            
-        <?php include_once 'footer.php';
 
-        
+            <?php
+            include_once 'footer.php';
+
+            

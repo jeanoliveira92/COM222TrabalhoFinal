@@ -27,7 +27,7 @@ echo "
                     <p>Avaliação Média</p>
                     <ul class='reg2 '>
                         <li><span>" .$row['avaliacao'] . "</span></li>
-                        <li>2890 avaliações</li>
+                        <li></li>
                     </ul>
                 </div>
                 <div class='ratingbottom'>

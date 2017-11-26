@@ -9,34 +9,34 @@ $email;
 $msg;
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-$nome = addslashes($_POST['nome']);
-$email = addslashes($_POST['email']);
+    $nome = addslashes($_POST['nome']);
+    $email = addslashes($_POST['email']);
 
-if (empty($nome)) {
-$msg = "Campo nome em branco";
-} else if (empty($email)) {
-$msg = "Campo email em branco";
-} else if (substr_count($nome, "\\")) {
-$msg = "Campo preco invalido. Contém: aspas simples/duplas, barras ou valor NULL";
-} else if (substr_count($email, "\\")) {
-$msg = "Campo preco invalido. Contém: aspas simples/duplas, barras ou valor NULL";
+    if (empty($nome)) {
+        $msg = "Campo nome em branco";
+    } else if (empty($email)) {
+        $msg = "Campo email em branco";
+    } else if (substr_count($nome, "\\")) {
+        $msg = "Campo preco invalido. Contém: aspas simples/duplas, barras ou valor NULL";
+    } else if (substr_count($email, "\\")) {
+        $msg = "Campo preco invalido. Contém: aspas simples/duplas, barras ou valor NULL";
 
 // Se não houver erros,a atualiza o usuario
-} else {
-$dao->atualizacao("usuario", array("nome" => $nome, "email" => $email));
-$dao->where(array("id='".$_SESSION['id']."'"));
-$dao->executar();
+    } else {
+        $dao->atualizacao("usuario", array("nome" => $nome, "email" => $email));
+        $dao->where(array("id='" . $_SESSION['id'] . "'"));
+        $dao->executar();
 
-$_SESSION['nome'] = $nome;
-$msg = "Atualizado com sucesso!";
-}
+        $_SESSION['nome'] = $nome;
+        $msg = "Atualizado com sucesso!";
+    }
 } else {
-$dao->buscar("usuario", array("email"));
-$dao->where(array("id='" . $_SESSION['id'] . "'"));
-$dado = $dao->executar();
-$row = $dado->fetch_assoc();
+    $dao->buscar("usuario", array("email"));
+    $dao->where(array("id='" . $_SESSION['id'] . "'"));
+    $dado = $dao->executar();
+    $row = $dado->fetch_assoc();
 
-$email = $row['email'];
+    $email = $row['email'];
 }
 ?>
 <html lang="en">
@@ -121,4 +121,6 @@ $email = $row['email'];
                 </section>
             </div>
         </section>
-<?php        include_once 'footer.php';
+        <?php
+        include_once 'footer.php';
+        
