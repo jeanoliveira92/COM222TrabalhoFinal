@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $msg;
     $Sucess;
 
-//Obter nome,alimentos que harmonizam e preço do formulario
+    //Obter nome,alimentos que harmonizam e preço do formulario
     $nome = addslashes($_POST['nome']);
     $harmonizacao = addslashes($_POST['harmonizacao']);
     $preco = addslashes($_POST['preco']);
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $tipo = addslashes($_POST['tipo']);
     $rotulo = $_FILES['rotulo'];
 
-// Verifica campos vazios
+    // Verifica campos vazios
     if (empty($nome)) {
         $msg = "Campo nome em branco";
         $erro = 1;
@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $erro = 1;
     } else if (empty($preco)) {
         $msg = "Campo preco vazio";
-// Verifica por caracteres especiais 
+    // Verifica por caracteres especiais 
     } else if (substr_count($nome, "\\")) {
         $msg = "Campo nome invalido. Contém: aspas simples/duplas, barras ou valor NULL";
         $erro = 1;
@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $msg = "Campo preco invalido. Contém: aspas simples/duplas, barras ou valor NULL";
         $erro = 1;
 
-// Entra se tudo válido
+    // Entra se tudo válido
     } else {
         //Criar DAO
         $banco = new DAO();
@@ -139,7 +139,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     adicionarHarmonizacao($banco, $harmonizacao, $vinho['id']);
 
                     //Pegar ID do usuário e cadastrar em MyWines
+                    $user = $_SESSION['id'];
                     $id = $vinho['id'];
+
+                    $banco->cadastro('vinhos_usuario',array('idvinho'=>$id,'idusuario'=>$user));
+                    $banco->executar();
 
                     //Sucesso no cadastro do vinho
                     $Sucess = "O novo vinho foi cadastrado com sucesso!";
@@ -152,11 +156,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
             //Validar se o usuario informou novo preco
             if (!($preco == NULL || $preco == "")) {
-                //Calcular e definir media de preco do vinho
-                $consulta = 'CALL atualiza_preco(' . $preco . ',' . $vinho['id'] . ')';
-                $banco->setSQL($consulta);
-                $banco->executar();
-
                 //Adicionar vinho do usuario
                 $usr = $_SESSION['id'];
                 $idvinho = $vinho['id'];
@@ -164,8 +163,16 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
                 if ($res = $banco->executar()) {
                     // vinho adicionado a mywines
+                    $erro = "Falha ao adicionar vinho a sua lista pessoal!";
+
+                    //Calcular e definir media de preco do vinho
+                    $consulta = 'CALL atualiza_preco(' . $preco . ',' . $vinho['id'] . ')';
+                    $banco->setSQL($consulta);
+                    $banco->executar();
                 } else {
                     //Erro ao adicionar
+                    //Sucesso no cadastro do vinho
+                    $Sucess = "O vinho foi adicionado a sua lista pessoal!";
                 }
             }
         }

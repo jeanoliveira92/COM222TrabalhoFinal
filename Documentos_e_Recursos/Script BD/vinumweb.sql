@@ -33,7 +33,7 @@ create table usuario
 	id int not null AUTO_INCREMENT,
 	nome varchar(64) not null,
 	email varchar(64) not null unique,
-	senha varchar(50) not null,
+	senha varchar(64) not null,
 	primary key(id)
 );
 

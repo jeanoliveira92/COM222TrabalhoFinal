@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         <div><a href="index.php">Vinum<span>Web</span></a></div>
                     </div>
                     <div class="col-md-4 login">
-                        <form method="POST" action="registrar.php">
+                        <form method="POST" action="signup.php">
                             <div class="field-wrap">
                                 <input type="text" placeholder="nome" name="nome" required autocomplete="off" value="<?php
                                 if ($error != -1) {
