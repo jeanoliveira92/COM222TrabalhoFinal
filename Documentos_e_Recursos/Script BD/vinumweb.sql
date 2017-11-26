@@ -57,6 +57,8 @@ create table avaliacao
 	primary key(idvinho,idusuario)
 );
 
+ALTER TABLE avaliacao ADD COLUMN ordem int not null AUTO_INCREMENT add index(ordem);
+
 --Apos inserida uma avaliacao, a avaliacao da tabela vinho deve ser atualizada
 DELIMITER $
 CREATE TRIGGER atualiza_avaliacao after INSERT ON avaliacao FOR EACH ROW
