@@ -1,6 +1,8 @@
 <?php
 session_start();
 include_once 'session.php';
+// Titulo da Pagina
+$pageTitle = "Cadastre um novo vinho";
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
@@ -44,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $erro = 1;
     } else if (empty($preco)) {
         $msg = "Campo preco vazio";
-    // Verifica por caracteres especiais 
+        // Verifica por caracteres especiais 
     } else if (substr_count($nome, "\\")) {
         $msg = "Campo nome invalido. Contém: aspas simples/duplas, barras ou valor NULL";
         $erro = 1;
@@ -55,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $msg = "Campo preco invalido. Contém: aspas simples/duplas, barras ou valor NULL";
         $erro = 1;
 
-    // Entra se tudo válido
+        // Entra se tudo válido
     } else {
         //Criar DAO
         $banco = new DAO();
@@ -145,7 +147,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     $user = $_SESSION['id'];
                     $id = $vinho['id'];
 
-                    $banco->cadastro('vinhos_usuario',array('idvinho'=>$id,'idusuario'=>$user));
+                    $banco->cadastro('vinhos_usuario', array('idvinho' => $id, 'idusuario' => $user));
                     $banco->executar();
 
                     //Sucesso no cadastro do vinho
@@ -183,176 +185,147 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 }
 ?>
 
-<html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <title>Cadastre um novo vinho</title>
-        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <meta name="description" content="" />
-        <meta name="keywords" content="" />
-        <!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
-        <script src="js/jquery.js"></script>
-        <script src="js/skel.min.js"></script>
-        <!-- conflito
-        <script src="js/skel-layers.min.js"></script>
-        -->
-        <noscript>
-        <link rel="stylesheet" href="css/skel.css" />
-        <link rel="stylesheet" href="css/style.css" />
-        <link rel="stylesheet" href="css/style-xlarge.css" />
-        </noscript>
+<?php include_once("header.php"); ?>
+<!-- Main -->
+<section id="main" class="wrapper">
+    <div class="container">
+        <header class="major">
+            <h2>Cadastrar Vinho</h2>
+            <p>Informe os dados do seu vinho</p>
+        </header>
+        <section>
+            <form action="cadastro_vinho.php" enctype="multipart/form-data" method="POST">
+                <div class="row uniform 50%">
+                    <div class="12u$">
+                        <?php if (isset($msg)) { ?>
+                            <div class="alert-danger" role="alert"><?php echo $msg ?></div>
+                        <?php } else if (isset($Sucess)) { ?>
+                            <div class="alert-success" role="alert"><?php echo $Sucess ?></div>
+                        <?php } ?>
+                    </div>
+                    <div class="6u 12u$(medium)">
+                        <label for="nome">Nome:</label>
+                        <input type="text" name="nome" id="nome" placeholder="Nome do vinho"  <?php if (isset($msg)) echo "value='" . $nome . "'" ?>>
+                    </div>
 
-        <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/start/jquery-ui.css" />
-        <link rel="stylesheet" type="text/css" href="css/jquery.autocomplete.css" />
-        <link rel="stylesheet" type="text/css" href="css/jquery.tagsinput.min.css" />
-
-        <script type="text/javascript" src="js/jquery.autocomplete.js"></script>
-        <script type="text/javascript" src="js/jquery.tagsinput.min.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $("#nome").autocomplete("cadastro_vinho_Autocompletar.php", {
-                    width: 592,
-                    selectFirst: false
-                });
-            });
-        </script>
-        <script type="text/javascript">
-            $(function () {
-                $('#harmonizacao').tagsInput({width: 'auto'});
-            });
-        </script>
-
-        <script src="js/init.js"></script>
-    </head>
-    <body>
-        <?php include_once("navMenu.php"); ?>
-        <!-- Main -->
-        <section id="main" class="wrapper">
-            <div class="container">
-                <header class="major">
-                    <h2>Cadastrar Vinho</h2>
-                    <p>Informe os dados do seu vinho</p>
-                </header>
-                <section>
-                    <form action="cadastro_vinho.php" enctype="multipart/form-data" method="POST">
-                        <div class="row uniform 50%">
-                            <div class="12u$">
-                                <?php if (isset($msg)) { ?>
-                                    <div class="alert-danger" role="alert"><?php echo $msg ?></div>
-                                <?php } else if (isset($Sucess)) { ?>
-                                    <div class="alert-success" role="alert"><?php echo $Sucess ?></div>
-                                <?php } ?>
-                            </div>
-                            <div class="6u 12u$(medium)">
-                                <label for="nome">Nome:</label>
-                                <input type="text" name="nome" id="nome" placeholder="Nome do vinho"  <?php if (isset($msg)) echo "value='" . $nome . "'" ?>>
-                            </div>
-
-                            <div class="6u$ 12u$(medium)">
-                                <label for="produtor">Produtor:</label>
-                                <input type="text" min="4" name="produtor" id="produtor" placeholder="Nome do produtor" <?php if (isset($msg)) echo "value='" . $produtor . "'" ?>>
-                            </div>
-                            <div class="6u 12u$(medium)">
-                                <label for="pais">Pais de origem:</label>
-                                <input type="text" name="pais" min="4" id="pais" placeholder="País de origem" <?php if (isset($msg)) echo "value='" . $pais . "'" ?>>
-                            </div>
-                            <div class="6u$ 12u$(medium)">
-                                <label for="regiao">Região de origem:</label>
-                                <input type="text" name="regiao" min="4" id="regiao" placeholder="Região" <?php if (isset($msg)) echo "value='" . $regiao . "'" ?>>
-                            </div>
-                            <div class="4u 12u$(medium)">
-                                <label for="tipouva">Tipo de uva:</label>
-                                <input type="text" name="tipouva" min="4" id="tipouva" placeholder="Tipo de uva" <?php if (isset($msg)) echo "value='" . $tipouva . "'" ?>>
-                            </div>
-                            <div class="4u 12u$(medium)">
-                                <label for="estilo">Estilo:</label>
-                                <input type="text" id="estilo" min="4" name="estilo" placeholder="Estilo do vinho" <?php if (isset($msg)) echo "value='" . $estilo . "'" ?>>
-                            </div>
-                            <div class="4u$ 12u$(medium)">
-                                <label for="preco">Preço:</label>
-                                <input type="text" name="preco" min="4" id="preco" placeholder="Preço 1000,00" <?php if (isset($msg)) echo "value='" . $preco . "'" ?>>
-                            </div>
-                            <div class="4u 12u$(medium)">
-                                <label for="harmonizacao">Harmoniza com:</label>
-                                <input type="text" id="harmonizacao" name="harmonizacao" placeholder="Comidas que combinam" <?php if (isset($msg)) echo "value='" . $harmonizacao . "'" ?>>
-                            </div>
-                            <div class="4u 12u$(medium)">
-                                <label for="tipo">Tipo:</label>
-                                <select name="tipo" id="tipo">
-                                    <option value="vermelho" <?php
-                                    if (isset($msg)) {
-                                        if ($tipo == "vermelho") {
-                                            echo "selected";
-                                        }
-                                    }
-                                    ?>>Vermelho</option>
-                                    <option value="branco" <?php
-                                    if (isset($msg)) {
-                                        if ($tipo == "branco") {
-                                            echo "selected";
-                                        }
-                                    }
-                                    ?>>Branco</option>
-                                    <option value="espumante" <?php
-                                    if (isset($msg)) {
-                                        if ($tipo == "espumante") {
-                                            echo "selected";
-                                        }
-                                    }
-                                    ?>>Espumante</option>
-                                    <option value="rosa" <?php
-                                    if (isset($msg)) {
-                                        if ($tipo == "rosa") {
-                                            echo "selected";
-                                        }
-                                    }
-                                    ?>>Rosa</option>
-                                    <option value="sobremesa" <?php
-                                    if (isset($msg)) {
-                                        if ($tipo == "sobremesa") {
-                                            echo "selected";
-                                        }
-                                    }
-                                    ?>>Sobremesa</option>
-                                    <option value="porto" <?php
-                                    if (isset($msg)) {
-                                        if ($tipo == "porto") {
-                                            echo "selected";
-                                        }
-                                    }
-                                    ?>>Porto</option>
-                                </select>
-                            </div>
-                            <div class="4u 12u$(medium)">
-                                <div class="12u">
-                                    <label for="rotulo">Envie o rótulo:</label>
-                                    <input id="uploadFile" type="text" placeholder="Choose File" disabled="disabled" />
-                                </div>
-                                <div class="fileUpload button 4u 12u(medium)">
-                                    <span>Upload</span>
-                                    <input type="file" class="upload" name="rotulo" id="rotulo" />
-                                </div>
-                            </div>
-                            <div class="12u$">
-                                <ul class="actions">
-                                    <li><input type="submit" onclick="" value="Cadastrar vinho" ></li>
-                                    <li><input type="reset" value="Reset" class="special"></li>
-                                </ul>
-                            </div>
+                    <div class="6u$ 12u$(medium)">
+                        <label for="produtor">Produtor:</label>
+                        <input type="text" min="4" name="produtor" id="produtor" placeholder="Nome do produtor" <?php if (isset($msg)) echo "value='" . $produtor . "'" ?>>
+                    </div>
+                    <div class="6u 12u$(medium)">
+                        <label for="pais">Pais de origem:</label>
+                        <input type="text" name="pais" min="4" id="pais" placeholder="País de origem" <?php if (isset($msg)) echo "value='" . $pais . "'" ?>>
+                    </div>
+                    <div class="6u$ 12u$(medium)">
+                        <label for="regiao">Região de origem:</label>
+                        <input type="text" name="regiao" min="4" id="regiao" placeholder="Região" <?php if (isset($msg)) echo "value='" . $regiao . "'" ?>>
+                    </div>
+                    <div class="4u 12u$(medium)">
+                        <label for="tipouva">Tipo de uva:</label>
+                        <input type="text" name="tipouva" min="4" id="tipouva" placeholder="Tipo de uva" <?php if (isset($msg)) echo "value='" . $tipouva . "'" ?>>
+                    </div>
+                    <div class="4u 12u$(medium)">
+                        <label for="estilo">Estilo:</label>
+                        <input type="text" id="estilo" min="4" name="estilo" placeholder="Estilo do vinho" <?php if (isset($msg)) echo "value='" . $estilo . "'" ?>>
+                    </div>
+                    <div class="4u$ 12u$(medium)">
+                        <label for="preco">Preço:</label>
+                        <input type="text" name="preco" min="4" id="preco" placeholder="Preço 1000,00" <?php if (isset($msg)) echo "value='" . $preco . "'" ?>>
+                    </div>
+                    <div class="4u 12u$(medium)">
+                        <label for="harmonizacao">Harmoniza com:</label>
+                        <input type="text" id="harmonizacao" name="harmonizacao" placeholder="Comidas que combinam" <?php if (isset($msg)) echo "value='" . $harmonizacao . "'" ?>>
+                    </div>
+                    <div class="4u 12u$(medium)">
+                        <label for="tipo">Tipo:</label>
+                        <select name="tipo" id="tipo">
+                            <option value="vermelho" <?php
+                            if (isset($msg)) {
+                                if ($tipo == "vermelho") {
+                                    echo "selected";
+                                }
+                            }
+                            ?>>Vermelho</option>
+                            <option value="branco" <?php
+                            if (isset($msg)) {
+                                if ($tipo == "branco") {
+                                    echo "selected";
+                                }
+                            }
+                            ?>>Branco</option>
+                            <option value="espumante" <?php
+                            if (isset($msg)) {
+                                if ($tipo == "espumante") {
+                                    echo "selected";
+                                }
+                            }
+                            ?>>Espumante</option>
+                            <option value="rosa" <?php
+                            if (isset($msg)) {
+                                if ($tipo == "rosa") {
+                                    echo "selected";
+                                }
+                            }
+                            ?>>Rosa</option>
+                            <option value="sobremesa" <?php
+                            if (isset($msg)) {
+                                if ($tipo == "sobremesa") {
+                                    echo "selected";
+                                }
+                            }
+                            ?>>Sobremesa</option>
+                            <option value="porto" <?php
+                            if (isset($msg)) {
+                                if ($tipo == "porto") {
+                                    echo "selected";
+                                }
+                            }
+                            ?>>Porto</option>
+                        </select>
+                    </div>
+                    <div class="4u 12u$(medium)">
+                        <div class="12u">
+                            <label for="rotulo">Envie o rótulo:</label>
+                            <input id="uploadFile" type="text" placeholder="Choose File" disabled="disabled" />
                         </div>
-                    </form>
-                    <hr/>
-                    <h4>*Informe os alimentos que harmonizam com o vinho separados por vírgula</h4>
-                    <h4>*Ao selecionar a sugestão de um vinho na entrada de nome você só precisa informar o preço. Você também pode informar os alimentos que harmonizam com a bebida.</h4>
-                </section>
-            </div>
+                        <div class="fileUpload button">
+                            <span>Upload</span>
+                            <input type="file" class="upload" name="rotulo" id="rotulo" />
+                        </div>
+                    </div>
+                    <div class="12u$">
+                        <ul class="actions">
+                            <li><input type="submit" onclick="" value="Cadastrar vinho" ></li>
+                            <li><input type="reset" value="Reset" class="special"></li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+            <hr/>
+            <h4>*Informe os alimentos que harmonizam com o vinho separados por vírgula</h4>
+            <h4>*Ao selecionar a sugestão de um vinho na entrada de nome você só precisa informar o preço. Você também pode informar os alimentos que harmonizam com a bebida.</h4>
         </section>
-        <script language="javascript">
-            document.getElementById("rotulo").onchange = function () {
-                document.getElementById("uploadFile").value = this.value;
-            };
+    </div>
+</section>
+<script type="text/javascript">
+    $(document).ready(function () {
+        // Autocomplete do nome do vinho
+        $("#nome").autocomplete("cadastro_vinho_Autocompletar.php", {
+            width: 592,
+            selectFirst: false
+        });
 
-            <?php
-            include_once 'footer.php';
+        // Nome do arquivo no campo text
+        document.getElementById("rotulo").onchange = function () {
+            document.getElementById("uploadFile").value = this.value;
+        };
 
-            
+        // Blocos do campo harmonização
+        $(function () {
+            $('#harmonizacao').tagsInput({width: 'auto'});
+        });
+    });
+</script>
+<?php
+include_once 'footer.php';
+

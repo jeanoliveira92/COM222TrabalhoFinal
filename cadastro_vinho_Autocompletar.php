@@ -8,7 +8,7 @@ $q = $_GET['q'];
 $dao = new DAO;
 
 $dao->buscar("vinho", array("nome"));
-$dao->where(array("nome LIKE '%" . $q . "%'"));
+$dao->where(array("nome LIKE '%" . $q . "%' LIMIT 10"));
 //$sql="SELECT nome FROM vinho WHERE nome LIKE '%".$q."%'";
 
 $result = $dao->executar();
