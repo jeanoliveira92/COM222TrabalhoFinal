@@ -39,6 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $email = $row['email'];
 }
 
+$pageTitle = "Vw | ". $_SESSION['nome'];
 include_once("header.php");
 ?>
 

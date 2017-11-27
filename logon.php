@@ -65,7 +65,7 @@ if ((isset($_COOKIE["email"]) && isset($_COOKIE["email"]) ) || $_SERVER['REQUEST
         <head>
             <meta charset="utf-8"/>
             <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1">
-            <title>LOGIN</title>
+            <title>Vw | LOGIN</title>
             <link href="css/bootstrap.min.css" rel="stylesheet"/> 
             <link href="css/stylelg.css" rel="stylesheet"/> 
             <script src="js/jquery-1.12.3.min.js"></script>

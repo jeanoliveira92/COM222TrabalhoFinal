@@ -1,4 +1,6 @@
 <?php
+
+session_start();
 include_once('DAO.php');
 //obter parametros: O vinho é importante caso seja necessario redirecionar de volta
 global $pvinho;
@@ -17,11 +19,13 @@ if (empty($pusr)) {
 //Buscar usuário
 $banco = new DAO();
 $banco->buscar('usuario', NULL);
-$banco->where(array("id=" . $pusr));
-global $user;
+$banco->where(array("id='" . $pusr."'"));
 
-if ($user = $banco->executar()) {
-    //Encontrou o usuario
+//echo $banco->sql;
+
+$user = $banco->executar();
+
+if ($user->num_rows > 0) {
     $user = $user->fetch_assoc();
 } else {
     //Não encontrou. Redirecionar
@@ -30,7 +34,7 @@ if ($user = $banco->executar()) {
         header("location: index.php");
     } else {
         //Se o id do vinho for passado, redirecionar
-        header("showwine.php?id=" . $pvinho);
+        header("location: showwine.php?id=" . $pvinho);
     }
 }
 
@@ -53,70 +57,56 @@ function listarAvaliacoes($avaliacoes, $user) {
     echo "</div>";
 }
 
+$pageTitle = "Avaliações de ".$user['nome'];
+include_once 'header.php';
 //As revisoes mais recentes aparecem primeiro
 ?>
-<html>
-    <head>
-        <title>Vw | Avaliações de <?php echo $user['nome']; ?></title>
-        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <meta name="description" content="" />
-        <meta name="keywords" content="" />
-        <script src="js/jquery.min.js"></script>
-        <script src="js/skel.min.js"></script>
-        <script src="js/skel-layers.min.js"></script>
-        <script src="js/init.js"></script>
-        <noscript>
-        <link rel="stylesheet" href="css/skel.css" />
-        <link rel="stylesheet" href="css/style.css" />
-        <link rel="stylesheet" href="css/style-xlarge.css" />
-        </noscript>
-        <meta charset="UTF-8">
-    </head>
-    <body class="landing">
-        <section id="one" class="wrapper style3 special">
-            <div class="container">
-                <header class="major">
-                    <h2><?php echo $user['nome']; ?></h2>
-                    <p>Integrante da comunidade | <?php echo $user['email']; ?></p>
-                </header>
-            </div>
-        </section>
 
-        <section id="one" class="wrapper style2 special">
-            <div class="row 150%">
-                <div>
-                    <header class="major">
-                        <?php
-                        $db = new DAO();
-                        $db->buscar('avaliacao', NULL);
-                        $db->where(array('idusuario=' . $_GET['user']));
-                        $db->ordenacao('ordem', false);
-                        if ($resultado = $db->executar()) {
-                            if ($db->numLinhasAfetadas($resultado) == 0) {
-                                echo '<h3> ' . $user['nome'] . ' ainda não avaliou nenhum vinho.</h3> ';
-                            } else {
-                                if ($db->numLinhasAfetadas($resultado) == 1) {
+<section id="one" class="wrapper">
+    <div class="container">
+        <header class="major">
+            <h2><?php echo $user['nome']; ?></h2>
+            <p>Integrante da comunidade | <?php echo $user['email']; ?></p>
+        </header>
+    </div>
+</section>
 
-                                    echo '<h3> ' . $user['nome'] . ' avaliou um vinho em nosso site! Confira abaixo:</h3> ';
-                                } else {
-                                    echo '<h3> ' . $user['nome'] . ' avaliou ' . $db->numLinhasAfetadas($resultado) . ' vinhos em nosso site! Confira abaixo:</h3> ';
-                                }
+<section id="one" class="special">
+    <div class="row">
+        <div class="12u$">
+            <header>
+                <?php
+                $db = new DAO();
+                $db->buscar('avaliacao', NULL);
+                $db->where(array('idusuario=' . $_GET['user']));
+                $db->ordenacao('ordem', false);
 
-                                listarAvaliacoes($resultado, $user);
-                            }
+                if ($resultado = $db->executar()) {
+                    if ($db->numLinhasAfetadas($resultado) == 0) {
+                        echo '<h3> ' . $user['nome'] . ' ainda não avaliou nenhum vinho.</h3> ';
+                    } else {
+                        if ($db->numLinhasAfetadas($resultado) == 1) {
+
+                            echo '<h3> ' . $user['nome'] . ' avaliou um vinho em nosso site! Confira abaixo:</h3> ';
                         } else {
-                            //Erro, melhor redirecionar
-                            if (empty($pvinho)) {
-                                header("location: index.php");
-                            } else {
-                                header("showwine.php?id=" . $pvinho);
-                            }
+                            echo '<h3> ' . $user['nome'] . ' avaliou ' . $db->numLinhasAfetadas($resultado) . ' vinhos em nosso site! Confira abaixo:</h3> ';
                         }
-                        ?>
-                    </header>
-                </div>
-            </div>
-        </section>
 
-    </body>
-</html>
+                        listarAvaliacoes($resultado, $user);
+                    }
+                } else {
+                    //Erro, melhor redirecionar
+                    if (empty($pvinho)) {
+                        header("location: index.php");
+                    } else {
+                        header("showwine.php?id=" . $pvinho);
+                    }
+                }
+                ?>
+            </header>
+        </div>
+    </div>
+</section>
+
+<?php
+include_once 'footer.php';

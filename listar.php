@@ -3,6 +3,7 @@ session_start();
 //include_once 'session.php';
 include_once 'listar_Dados.php';
 
+$pageTitle = "Vw | Lista de Vinhos";
 include_once("header.php");
 ?>
 <style>
@@ -231,7 +232,7 @@ include_once("header.php");
                                     <div class="ratingbottom">
                                         <p>Avaliação Média</p>
                                         <ul class="reg2 ">
-                                            <li><span><?php echo $row['avaliacao'] ?> </span></li>
+                                            <li><span><?php echo number_format($row['avaliacao'], 2, '.', '') ?> </span></li>
                                             <li>( <?php echo $row['numavaliacoes']?> )</li>
                                         </ul>
                                     </div>
