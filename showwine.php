@@ -87,7 +87,7 @@ include_once("header.php");
                         if ($vinho['numavaliacoes'] == 0) {
                             echo "O vinho ainda não foi avaliado";
                         } else {
-                            echo 'Avaliação média: ' . $vinho['avaliacao'];
+                            echo 'Avaliação média: ' . number_format($vinho['avaliacao'], 2, '.', '');
                         }
                         ?>
                     </h3>
@@ -155,7 +155,6 @@ include_once("header.php");
             ?>
         </div>
     </div>
-</div>
 </section>
 <?php
 if (isset($_SESSION['nome']) && isset($_SESSION['id'])) {
