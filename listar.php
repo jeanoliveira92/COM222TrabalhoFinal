@@ -18,7 +18,7 @@ include_once 'listar_Dados.php';
                 // Dispara a funcao atualizar dados quando qualquer check box muda de estado
                 $('input').change(trocaLista);
                 // Dispara quando o mouse é disclicado sobre um dos botoes de controle do slider
-                $('.noUi-handle').onmouseout(trocaLista);
+                $('.noUi-handle').mouseup(trocaLista);
                 // Funcao para atualizar dados na tela
                 function trocaLista() {
 
