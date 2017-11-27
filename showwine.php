@@ -16,7 +16,7 @@ function buscaAvaliacoes() {
     $idvinho = $_GET['id'];
     $database = new DAO();
     $database->buscar('avaliacao', NULL);
-    $database->where(array("idvinho=" . $idvinho));
+    $database->where(array("idvinho=" . $idvinho . " order by ordem desc"));
     $review = $database->executar();
     if ($database->numLinhasAfetadas($review) == 0) {
         return NULL;
@@ -45,7 +45,7 @@ function exibeHarmonizacoes() {
     $harm = $database->executar();
 
     if ($database->numLinhasAfetadas($harm) == 0) {
-        echo "<h4>Nenhuma harmoniza√ß√£o com esse vinho cadastrada.</h4>";
+        echo "<h4>Nenhuma harmonizaÁ„o com esse vinho cadastrada.</h4>";
     } else {
         $count = $database->numLinhasAfetadas($harm);
         echo '<ul>';
@@ -60,6 +60,9 @@ function exibeHarmonizacoes() {
 
 $pageTitle = $vinho['nome'];
 include_once("header.php");
+
+
+header('Content-type: text/html; charset=ISO8859-1');
 ?>
 <style>
     .ha li{
@@ -72,7 +75,7 @@ include_once("header.php");
     <div class="container">
         <header class="major wrapper">
             <h2><?php echo $vinho['nome']; ?></h2>
-            <p>Um vinho <?php echo $vinho['tipo']; ?> da regi√£o de <?php echo $vinho['regiao']; ?>, <?php echo $vinho['paisorigem']; ?></p>
+            <p>Um vinho <?php echo $vinho['tipo']; ?> da regi„o de <?php echo $vinho['regiao']; ?>, <?php echo $vinho['paisorigem']; ?></p>
         </header>
         <div class="row nopadding">
             <div class="4u 12u$(medium)">
@@ -85,9 +88,9 @@ include_once("header.php");
                     <h3> 
                         <?php
                         if ($vinho['numavaliacoes'] == 0) {
-                            echo "O vinho ainda n√£o foi avaliado";
+                            echo "O vinho ainda n„o foi avaliado";
                         } else {
-                            echo 'Avalia√ß√£o m√©dia: ' . number_format($vinho['avaliacao'], 2, '.', '');
+                            echo 'AvaliaÁ„o mÈdia: ' . number_format($vinho['avaliacao'], 2, '.', '');
                         }
                         ?>
                     </h3>
@@ -107,7 +110,7 @@ include_once("header.php");
                         </section>
                         <section  class="3u 6u(medium) 12u$(xsmall) profile">
                             <img src="images/showico/preco.png" alt="" />
-                            <h4>Pre√ßo m√©dio</h4>
+                            <h4>PreÁo mÈdio</h4>
                             <p>R$<?php echo $vinho['preco']; ?></p>
                         </section>
                         <section class="3u$ 6u$(medium) 12u$(xsmall) profile">
@@ -135,16 +138,16 @@ include_once("header.php");
     <div class="container">
         <div class="12u" id="avaliacoes">
              <section class="12u" style="text-align: center;">
-                <h2>Avalia√ß√µes:</h2>
+                <h2>AvaliaÁıes:</h2>
             </section>
         </div>
         <?php if(isset($_GET['sucess'])){ ?>
         <div class="12u$">
-            <div class="alert alert-success" role="alert">Avalia√ß√£o adicionada com sucesso!</div>
+            <div class="alert alert-success" role="alert">AvaliaÁ„o adicionada com sucesso!</div>
         </div>
         <?php }else if(isset($_GET['error'])) { ?>
         <div class="12u$">
-            <div class="alert alert-danger" role="alert">Voce j√° avaliou este vinho!</div>
+            <div class="alert alert-danger" role="alert">Voce j· avaliou este vinho!</div>
         </div>
         <?php } ?>
         <div class="12u$">
@@ -154,12 +157,12 @@ include_once("header.php");
                 while ($av = $avaliacoes->fetch_assoc()) {
                     $pessoa = buscaUsuario($av['idusuario']);
                     if ($pessoa !== NULL) {
-                        echo '<blockquote><h4><a href="user_reviews.php?vinho='.$av['idvinho'].'&user='.$pessoa['id'].'">' . $pessoa['nome'] . '</a>. Avalia√ß√£o: ' . $av['nota'] . ':</h4>';
+                        echo '<blockquote><h4><a href="user_reviews.php?vinho='.$av['idvinho'].'&user='.$pessoa['id'].'">' . $pessoa['nome'] . '</a>. AvaliaÁ„o: ' . $av['nota'] . ':</h4>';
                         echo '"' . $av['opiniao'] . '"</blockquote>';
                     }
                 }
             } else {
-                echo "<h4>Esse vinho ainda n√£o foi avaliado.</h4>";
+                echo "<h4>Esse vinho ainda n„o foi avaliado.</h4>";
             }
             ?>
         </div>

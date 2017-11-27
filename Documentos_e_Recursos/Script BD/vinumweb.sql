@@ -78,12 +78,7 @@ END
 DELIMITER $
 CREATE PROCEDURE atualiza_preco(IN valor float(2),IN cod_vinho int)
 BEGIN
-	DECLARE qtd bigint;
-	SELECT count(*) INTO qtd from vinhos_usuario where idvinho = cod_vinho;
-
-	IF(qtd != 1) THEN
-		update vinho set preco = (preco*(qtd-1)+valor)/(qtd) where id=cod_vinho;
-	END IF;
+	update vinho set preco = valor where id=cod_vinho;
 END$
 DELIMITER ;
 

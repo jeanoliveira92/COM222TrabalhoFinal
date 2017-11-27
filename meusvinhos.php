@@ -13,6 +13,9 @@ $consulta = 'select * from vinho where id in (select idvinho from vinhos_usuario
 $banco = new DAO();
 $banco->setSQL($consulta);
 $res = $banco->executar();
+
+
+header('Content-type: text/html; charset=ISO8859-1');
 ?>
 <section id="main" class="wrapper">
     <div class="container-full nomargin">
@@ -22,14 +25,14 @@ $res = $banco->executar();
             ?>
             <header class="major">
                 <h2>My Wines</h2>
-                <p>NÃ£o hÃ¡ nenhum vinho em sua lista pessoal!</p>
+                <p>Não há nenhum vinho em sua lista pessoal!</p>
             </header>  
             <?php
         } else {
             ?>
             <header class="major">
                 <h2>My Wines</h2>
-                <p>VocÃª possui <?php echo mysqli_num_rows($res); ?> vinho(s) em sua lista pessoal!</p>
+                <p>Você possui <?php echo mysqli_num_rows($res); ?> vinho(s) em sua lista pessoal!</p>
             </header>   
             <div class="row">
                 <?php
@@ -55,14 +58,14 @@ $res = $banco->executar();
 
             <div class='average' style='padding-left: 35px;'>
                 <div class='ratingbottom'>
-                    <p>AvaliaÃ§Ã£o MÃ©dia</p>
+                    <p>Avaliação Média</p>
                     <ul class='reg2 '>
                         <li><span>" . number_format($row['avaliacao'], 2, '.', '') . "</span></li>
-                        <li>( " . $row['numavaliacoes'] . " avaliaÃ§Ãµes )</li>
+                        <li>( " . $row['numavaliacoes'] . " avaliações )</li>
                     </ul>
                 </div>
                 <div class='ratingbottom'>
-                    <p>PreÃ§o Medio</p>
+                    <p>Preço Medio</p>
                     <span>R$ " . number_format($row['preco'], 2, '.', '') . "
                     </span>
             </div>

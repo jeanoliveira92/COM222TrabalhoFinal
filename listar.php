@@ -5,6 +5,7 @@ include_once 'listar_Dados.php';
 
 $pageTitle = "Vw | Lista de Vinhos";
 include_once("header.php");
+header('Content-type: text/html; charset=ISO8859-1');
 ?>
 <style>
     .row>*{
@@ -49,7 +50,7 @@ include_once("header.php");
                             </div>
                         </div>
                         <div class="12u$ marginlabel">
-                            <h3>Intervalo de pre√ßo</h3>
+                            <h3>Intervalo de preÁo</h3>
                             <script src="js/nouislider.min.js" id="intervalo" ></script>
                             <link href="css/nouislider.min.css" rel="stylesheet">
                             <div id="lower-value"  style="position: relative; float: left; width: 20%; padding-bottom: 10px; text-align: left;"></div>
@@ -98,7 +99,7 @@ include_once("header.php");
                         </div>
                         <input type="hidden" id="rate" name="rate" />
                         <div class="12u$ marginlabel">
-                            <h3>Avalia√ß√£o dos usu√°rios</h3>
+                            <h3>AvaliaÁ„o dos usu·rios</h3>
                             <div id="rate-value" style="position: relative; float: left; width: 20%; padding-bottom: 10px; text-align: center;">1.0</div>
                             <div id="rate-range" style="position: relative; float: left; width: 55%; "></div>
                             <div style="position: relative; float: left;padding-left: 30px; width: 25%; padding-bottom: 10px; text-align: center">5.0</div>
@@ -153,7 +154,7 @@ include_once("header.php");
 
                         <div class="12u$ row marginlabel">
                             <div class="12u$">
-                                <h3>Pa√≠ses</h3>
+                                <h3>PaÌses</h3>
                             </div>
                             <?php
                             $banco->setSQL("SELECT DISTINCT paisorigem from vinho order by paisorigem asc;");
@@ -187,7 +188,7 @@ include_once("header.php");
 
                         <div class="12u$ row marginlabel">
                             <div class="12u$">
-                                <h3>Harmoniza√ß√£o com comidas</h3>
+                                <h3>HarmonizaÁ„o com comidas</h3>
                             </div>
                             <?php
                             $banco->setSQL("SELECT DISTINCT alimento from harmonizacao order by alimento asc;");
@@ -205,7 +206,7 @@ include_once("header.php");
                     </form>
                 </div>
 
-                <!-- Exbi√ß√£o dos vinhos > -->
+                <!-- ExbiÁ„o dos vinhos > -->
                 <div class="9u 6u$(medium) row" id="vinhos">
                     <?php
                     while ($row = $result->fetch_assoc()) {
@@ -230,14 +231,14 @@ include_once("header.php");
 
                                 <div class="average">
                                     <div class="ratingbottom">
-                                        <p>Avalia√ß√£o M√©dia</p>
+                                        <p>AvaliaÁ„o MÈdia</p>
                                         <ul class="reg2 ">
                                             <li><span><?php echo number_format($row['avaliacao'], 2, '.', '') ?> </span></li>
                                             <li>( <?php echo $row['numavaliacoes']?> )</li>
                                         </ul>
                                     </div>
                                     <div class="ratingbottom">
-                                        <p>Pre√ßo Medio</p>
+                                        <p>PreÁo Medio</p>
                                         <span>R$ <?php
                                             echo number_format($row['preco'], 2, '.', '');
                                             ;
@@ -259,7 +260,7 @@ include_once("header.php");
 
     // Dispara a funcao atualizar dados quando qualquer check box muda de estado
     $('input').change(trocaLista);
-    // Dispara quando o mouse √© disclicado sobre um dos botoes de controle do slider
+    // Dispara quando o mouse È disclicado sobre um dos botoes de controle do slider
     $('.noUi-handle').mouseup(trocaLista);
     // Funcao para atualizar dados na tela
     function trocaLista() {
