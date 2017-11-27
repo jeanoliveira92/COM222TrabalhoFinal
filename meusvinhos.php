@@ -1,6 +1,6 @@
 <?php
 session_start();
-$pageTitle = "Meus vinhos";
+$pageTitle = "Vw | My Wines";
 
 include_once 'session.php';
 include_once 'header.php';
