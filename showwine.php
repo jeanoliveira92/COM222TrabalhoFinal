@@ -145,7 +145,7 @@ include_once("header.php");
                 while ($av = $avaliacoes->fetch_assoc()) {
                     $pessoa = buscaUsuario($av['idusuario']);
                     if ($pessoa !== NULL) {
-                        echo '<blockquote><h4><a href="">' . $pessoa['nome'] . '</a> avaliou em ' . $av['nota'] . ':</h4>';
+                        echo '<blockquote><h4><a href="user_reviews.php?vinho='.$av['idvinho'].'&user='.$pessoa['id'].'">' . $pessoa['nome'] . '</a> avaliou em ' . $av['nota'] . ':</h4>';
                         echo '"' . $av['opiniao'] . '"</blockquote>';
                     }
                 }
