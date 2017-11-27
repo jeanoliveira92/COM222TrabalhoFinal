@@ -7,7 +7,7 @@ include_once 'header.php';
 include_once 'DAO.php';
 
 $id = $_SESSION['id'];
-$consulta = 'select * from vinho where id in (select idvinho from vinhos_usuario where id=' . $id . ')';
+$consulta = 'select * from vinho where id in (select idvinho from vinhos_usuario where idusuario=' . $id . ')';
 
 //Buscar vinhos do cara no banco
 $banco = new DAO();
