@@ -57,7 +57,7 @@ $res = $banco->executar();
                 <div class='ratingbottom'>
                     <p>Avaliação Média</p>
                     <ul class='reg2 '>
-                        <li><span>" . $row['avaliacao'] . "</span></li>
+                        <li><span>" . number_format($row['avaliacao'], 2, '.', '') . "</span></li>
                         <li>( " . $row['numavaliacoes'] . " avaliações )</li>
                     </ul>
                 </div>
