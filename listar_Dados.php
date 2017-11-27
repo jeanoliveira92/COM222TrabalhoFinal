@@ -89,5 +89,5 @@ $result = $banco->executar();
 
 
 //echo json_encode($consulta);
-echo $banco->sql;
+//echo $banco->sql;
 //echo $banco->numLinhasAfetadas($result);
