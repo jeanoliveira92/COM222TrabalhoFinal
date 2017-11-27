@@ -307,23 +307,24 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         </section>
     </div>
 </section>
+<script src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.autocomplete.js"></script>
+<script type="text/javascript" src="js/jquery.tagsinput.min.js"></script>
 <script type="text/javascript">
-    $(document).ready(function () {
-        // Autocomplete do nome do vinho
-        $("#nome").autocomplete("cadastro_vinho_Autocompletar.php", {
-            width: 592,
-            selectFirst: false
-        });
+    // Autocomplete do nome do vinho
+    $("#nome").autocomplete("cadastro_vinho_Autocompletar.php", {
+        width: 592,
+        selectFirst: false
+    });
 
-        // Nome do arquivo no campo text
-        document.getElementById("rotulo").onchange = function () {
-            document.getElementById("uploadFile").value = this.value;
-        };
+    // Nome do arquivo no campo text
+    document.getElementById("rotulo").onchange = function () {
+        document.getElementById("uploadFile").value = this.value;
+    };
 
-        // Blocos do campo harmonização
-        $(function () {
-            $('#harmonizacao').tagsInput({width: 'auto'});
-        });
+    // Blocos do campo harmonização
+    $(function () {
+        $('#harmonizacao').tagsInput({width: 'auto'});
     });
 </script>
 <?php

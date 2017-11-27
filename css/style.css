@@ -1368,7 +1368,7 @@ input:checked ~ label {
     font-size: 12px;
 }
 
-.reg li, .reg2 li { display: inline; }
+.reg li, .reg2 li { display: inline; line-height: 10px; padding:0px;}
 
 .reg li span, .reg2 li span{
     padding-bottom: 5px;
@@ -1402,4 +1402,8 @@ input:checked ~ label {
 .ratingbottom span{
     font-size: 32px;
     font-weight: 100;
+}
+
+header.major{
+    margin: 0px !important;
 }

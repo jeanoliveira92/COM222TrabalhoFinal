@@ -11,6 +11,9 @@ if (( isset($_COOKIE["email"]) && isset($_COOKIE["email"])) && (!$_SESSION['id']
 
 include_once("header.php");
 ?>
+<script>
+    $('body').addClass('landing');
+</script>
 <!-- Banner -->
 <section id="banner">
     <h2>Bem vindo ao VinumWeb</h2>
