@@ -48,26 +48,25 @@ function exibeHarmonizacoes() {
         echo "<h4>Nenhuma harmonização com esse vinho cadastrada.</h4>";
     } else {
         $count = $database->numLinhasAfetadas($harm);
-
-        if ($count < 7) {
-            echo '<ul><h3>';
-            while ($alim = $harm->fetch_assoc()) {
-                echo '<li>' . $alim['alimento'] . '</li>';
-            }
-            echo '</h3><ul>';
-        } else {
-            echo '<ul><h4>';
-            while ($alim = $harm->fetch_assoc()) {
-                echo '<li>' . $alim['alimento'] . '</li>';
-            }
-            echo '</h4><ul>';
+        echo '<ul>';
+        $alim = $harm->fetch_assoc();
+        echo '<li>' . $alim['alimento'] . '</li>';
+        while ($alim = $harm->fetch_assoc()) {
+            echo '<li>, ' . $alim['alimento'] . '</li>';
         }
+        echo '<ul>';
     }
 }
 
 $pageTitle = $vinho['nome'];
 include_once("header.php");
 ?>
+<style>
+    li{
+        display: inline;
+        font-size: 18px;
+    }
+</style>
 <!-- One -->
 <section id="one" class="style2 special">
     <div class="container">
@@ -75,14 +74,14 @@ include_once("header.php");
             <h2><?php echo $vinho['nome']; ?></h2>
             <p>Um vinho <?php echo $vinho['tipo']; ?> da região de <?php echo $vinho['regiao']; ?>, <?php echo $vinho['paisorigem']; ?></p>
         </header>
-        <div class="row 150%">
-            <div class="4u">
+        <div class="row nopadding">
+            <div class="4u 12u$(medium)">
                 <span class="image fit">
                     <img src="images/rotulos/<?php echo $vinho['rotulo']; ?>" alt="" />
                 </span>
             </div>
-            <div>
-                <header class="major">
+            <div ader class="8u 12u$(medium) row nopadding">
+                <div class="12u$" style="margin-bottom: 20px;">
                     <h3> 
                         <?php
                         if ($vinho['numavaliacoes'] == 0) {
@@ -92,9 +91,9 @@ include_once("header.php");
                         }
                         ?>
                     </h3>
-                </header>
+                </div>
 
-                <div class="12u 12u(3)">
+                <div class="12u">
                     <div class="row">
                         <section class="3u 6u(medium) 12u$(xsmall) profile">
                             <img src="images/showico/tipo.png" alt="" />
@@ -118,44 +117,45 @@ include_once("header.php");
                         </section>
                     </div>
                 </div>
+
+                <div class="12u">
+                    <section>
+                        <h2>Alimentos harmonizantes:</h2>
+                        <?php
+                        exibeHarmonizacoes();
+                        ?>
+                    </section>  
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<section id="harmonizacao" class="20%">
-    <div class="container">
-        <div class="row 10%">
-            <div class="6u 12u$(medium)">
-                <section>
-                    <h2>Alimentos harmonizantes:</h2>
-                    <?php
-                    exibeHarmonizacoes();
-                    ?>
-                </section>
-            </div>
-
-            <div class="6u 12u$(medium)">
-                <section>
-                    <h2>Avaliações:</h2>
-                    <?php
-                    $avaliacoes = buscaAvaliacoes();
-                    if ($avaliacoes != NULL) {
-                        while ($av = $avaliacoes->fetch_assoc()) {
-                            $pessoa = buscaUsuario($av['idusuario']);
-                            if ($pessoa !== NULL) {
-                                echo '<blockquote><h4><a href="">' . $pessoa['nome'] . '</a> avaliou em ' . $av['nota'] . ':</h4>';
-                                echo '"' . $av['opiniao'] . '"</blockquote>';
-                            }
-                        }
-                    } else {
-                        echo "<h4>Esse vinho ainda não foi avaliado.</h4>";
+<section>
+    <div class="container row">
+        <div class="12u">
+             <section class="12u" style="text-align: center;">
+                <h2>Avaliações:</h2>
+            </section>
+        </div>
+        <div class="12u$">
+            <?php
+            $avaliacoes = buscaAvaliacoes();
+            if ($avaliacoes != NULL) {
+                while ($av = $avaliacoes->fetch_assoc()) {
+                    $pessoa = buscaUsuario($av['idusuario']);
+                    if ($pessoa !== NULL) {
+                        echo '<blockquote><h4><a href="">' . $pessoa['nome'] . '</a> avaliou em ' . $av['nota'] . ':</h4>';
+                        echo '"' . $av['opiniao'] . '"</blockquote>';
                     }
-                    ?>
-                </section>
-            </div>
+                }
+            } else {
+                echo "<h4>Esse vinho ainda não foi avaliado.</h4>";
+            }
+            ?>
         </div>
     </div>
+</div>
 </section>
 <?php
 if (isset($_SESSION['nome']) && isset($_SESSION['id'])) {

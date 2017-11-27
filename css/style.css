@@ -1407,3 +1407,7 @@ input:checked ~ label {
 header.major{
     margin: 0px !important;
 }
+
+.nopadding *{
+    padding: 0px !important;
+}
