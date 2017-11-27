@@ -1,52 +1,195 @@
-<?php session_start(); ?>
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Vw | Meus vinhos</title>
-    </head>
-    <body>
-    <center>
-        <?php
-        include_once('DAO.php');
+<?php
+session_start();
+$pageTitle = "Meus vinhos";
 
-        //Parametros necessarios
-        $id = $_SESSION['id'];
-        $consulta = 'select * from vinho where id in (select idvinho from vinhos_usuario where id=' . $id . ')';
+include_once 'session.php';
+include_once 'header.php';
+include_once 'DAO.php';
 
-        //Buscar vinhos do cara no banco
-        $banco = new DAO();
-        $banco->setSQL($consulta);
-        $res = $banco->executar();
+$id = $_SESSION['id'];
+$consulta = 'select * from vinho where id in (select idvinho from vinhos_usuario where id=' . $id . ')';
 
-        if (mysqli_num_rows($res) == 0) {
-            echo "<h3>Não há nenhum vinho em sua lista pessoal!</h3>";
-        } else {
-            echo "<h3>Você possui " . mysqli_num_rows($res) . " em sua lista pessoal!</h3>";
-            echo "<table>";
-            while ($vinho = $res->fetch_assoc()) {
+//Buscar vinhos do cara no banco
+$banco = new DAO();
+$banco->setSQL($consulta);
+$res = $banco->executar();
 
-                echo "<tr>";
-                //Rotulo a esquerda
-                echo "<td>";
-                echo '<a href="vervinho.php?id=' . $vinho['id'] . '&usr=' . $id . '>
-									<img scr="images/' . $vinho['rotulo'] . '"/>
-								  </a>';
-                echo "</td>";
-                //Dados do vinho a direita
-                echo "<td>";
-                echo '<h4>' . $vinho['produtor'] . '</h4>';
-                echo '<h4>' . $vinho['nome'] . '</h4>';
-                echo '<p>' . $vinho['paisorigem'] . ' - ' . $vinho['regiao'] . '</p>';
-                echo '<p> Média de avaliações: ' . $vinho['avaliacao'] . ' | 
-									  Média de preços: ' . $vinho['preco'] . '
-								 </p>';
-                echo "</td>";
-                echo "</tr>";
+if (mysqli_num_rows($res) == 0) {
+    echo "<h3>Não há nenhum vinho em sua lista pessoal!</h3>";
+} else {
+    ?>
+
+    <section id="main" class="wrapper">
+        <div class="container-full nomargin">
+
+            <header class="major">
+                <h2>My Wines</h2>
+                <p>Você possui <?php echo mysqli_num_rows($res); ?> vinho(s) em sua lista pessoal!</p>
+            </header>   
+            <div class="row">
+                <?php
+                while ($row = $res->fetch_assoc()) {
+                    echo "
+    <div class = '6u 12u$(medium) row showvinho' style='margin-bottom: 15px !important;'>
+        <a href = 'showwine.php?id=" . $row['id'] . "'>
+            <div class = 'showvinhoimg' style = 'background-image: URL(images/rotulos/" . $row['rotulo'] . ")'>
+            </div>
+        </a>
+        <div class = 'divcontent'>
+            <a href = 'showwine.php?id=" . $row['id'] . "'>
+                <ul class = 'ultitulo'>
+                    <li>" . $row['produtor'] . "</li>
+                    <li><span>" . $row['nome'] . "</span></a></li>
+                </ul>                         
+            </a>
+            <ul class='reg' style='margin-left: 8px;'>
+                <li>" . $row['paisorigem'] . "</li>
+                <li><span>.</span>  </li>
+                <li>" . $row['regiao'] . "</li>
+            </ul>
+
+            <div class='average' style='padding-left: 35px;'>
+                <div class='ratingbottom'>
+                    <p>Avaliação Média</p>
+                    <ul class='reg2 '>
+                        <li><span>" . $row['avaliacao'] . "</span></li>
+                        <li>( " . $row['numavaliacoes'] . " avaliações )</li>
+                    </ul>
+                </div>
+                <div class='ratingbottom'>
+                    <p>Preço Medio</p>
+                    <span>R$ " . number_format($row['preco'], 2, '.', '') . "
+                    </span>
+            </div>
+        </div>
+    </div>
+</div>";
+                }
+                mysqli_data_seek($res, 0);
+
+                while ($row = $res->fetch_assoc()) {
+                    echo "
+    <div class = '6u 12u$(medium) row showvinho' style='margin-bottom: 15px !important;'>
+        <a href = 'showwine.php?id=" . $row['id'] . "'>
+            <div class = 'showvinhoimg' style = 'background-image: URL(images/rotulos/" . $row['rotulo'] . ")'>
+            </div>
+        </a>
+        <div class = 'divcontent'>
+            <a href = 'showwine.php?id=" . $row['id'] . "'>
+                <ul class = 'ultitulo'>
+                    <li>" . $row['produtor'] . "</li>
+                    <li><span>" . $row['nome'] . "</span></a></li>
+                </ul>                         
+            </a>
+            <ul class='reg' style='margin-left: 8px;'>
+                <li>" . $row['paisorigem'] . "</li>
+                <li><span>.</span>  </li>
+                <li>" . $row['regiao'] . "</li>
+            </ul>
+
+            <div class='average' style='padding-left: 35px;'>
+                <div class='ratingbottom'>
+                    <p>Avaliação Média</p>
+                    <ul class='reg2 '>
+                        <li><span>" . $row['avaliacao'] . "</span></li>
+                        <li>( " . $row['numavaliacoes'] . " avaliações )</li>
+                    </ul>
+                </div>
+                <div class='ratingbottom'>
+                    <p>Preço Medio</p>
+                    <span>R$ " . number_format($row['preco'], 2, '.', '') . "
+                    </span>
+            </div>
+        </div>
+    </div>
+</div>";
+                }
+                mysqli_data_seek($res, 0);
+
+                while ($row = $res->fetch_assoc()) {
+                    echo "
+    <div class = '6u 12u$(medium) row showvinho' style='margin-bottom: 15px !important;'>
+        <a href = 'showwine.php?id=" . $row['id'] . "'>
+            <div class = 'showvinhoimg' style = 'background-image: URL(images/rotulos/" . $row['rotulo'] . ")'>
+            </div>
+        </a>
+        <div class = 'divcontent'>
+            <a href = 'showwine.php?id=" . $row['id'] . "'>
+                <ul class = 'ultitulo'>
+                    <li>" . $row['produtor'] . "</li>
+                    <li><span>" . $row['nome'] . "</span></a></li>
+                </ul>                         
+            </a>
+            <ul class='reg' style='margin-left: 8px;'>
+                <li>" . $row['paisorigem'] . "</li>
+                <li><span>.</span>  </li>
+                <li>" . $row['regiao'] . "</li>
+            </ul>
+
+            <div class='average' style='padding-left: 35px;'>
+                <div class='ratingbottom'>
+                    <p>Avaliação Média</p>
+                    <ul class='reg2 '>
+                        <li><span>" . $row['avaliacao'] . "</span></li>
+                        <li>( " . $row['numavaliacoes'] . " avaliações )</li>
+                    </ul>
+                </div>
+                <div class='ratingbottom'>
+                    <p>Preço Medio</p>
+                    <span>R$ " . number_format($row['preco'], 2, '.', '') . "
+                    </span>
+            </div>
+        </div>
+    </div>
+</div>";
+                }
+                mysqli_data_seek($res, 0);
+
+                while ($row = $res->fetch_assoc()) {
+                    echo "
+    <div class = '6u 12u$(medium) row showvinho' style='margin-bottom: 15px !important;'>
+        <a href = 'showwine.php?id=" . $row['id'] . "'>
+            <div class = 'showvinhoimg' style = 'background-image: URL(images/rotulos/" . $row['rotulo'] . ")'>
+            </div>
+        </a>
+        <div class = 'divcontent'>
+            <a href = 'showwine.php?id=" . $row['id'] . "'>
+                <ul class = 'ultitulo'>
+                    <li>" . $row['produtor'] . "</li>
+                    <li><span>" . $row['nome'] . "</span></a></li>
+                </ul>                         
+            </a>
+            <ul class='reg' style='margin-left: 8px;'>
+                <li>" . $row['paisorigem'] . "</li>
+                <li><span>.</span>  </li>
+                <li>" . $row['regiao'] . "</li>
+            </ul>
+
+            <div class='average' style='padding-left: 35px;'>
+                <div class='ratingbottom'>
+                    <p>Avaliação Média</p>
+                    <ul class='reg2 '>
+                        <li><span>" . $row['avaliacao'] . "</span></li>
+                        <li>( " . $row['numavaliacoes'] . " avaliações )</li>
+                    </ul>
+                </div>
+                <div class='ratingbottom'>
+                    <p>Preço Medio</p>
+                    <span>R$ " . number_format($row['preco'], 2, '.', '') . "
+                    </span>
+            </div>
+        </div>
+    </div>
+</div>";
+                }
             }
-            echo "</table>";
-        }
-        ?>
-    </center>
-    <?php
-    include_once 'footer';
-    
+            ?>
+        </div>
+        <header class="major wrapper">
+        </header>
+    </div>
+</section>
+
+
+<?php
+include_once 'footer.php';

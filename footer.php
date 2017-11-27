@@ -4,7 +4,7 @@
                 <div class="row">
                     <div class="8u 12u$(medium)">
                         <ul class="copyright">
-                            <li>&copy; VinumWeb. Todos os direitos reservados. Design base: <a href="http://templated.co">Templated</a> Densenvolvedores: Jean, Mateus e Robson</li>
+                            <li>&copy; VinumWeb. Todos os direitos reservados. Design base: <a href="http://templated.co">Templated</a>. Densenvolvedores: Jean, Mateus e Robson</li>
                         </ul>
                     </div>
                     <div class="4u$ 12u$(medium)">
