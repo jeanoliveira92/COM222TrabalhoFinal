@@ -132,7 +132,7 @@ include_once("header.php");
 </section>
 
 <section>
-    <div class="container row">
+    <div class="container">
         <div class="12u">
              <section class="12u" style="text-align: center;">
                 <h2>Avaliações:</h2>

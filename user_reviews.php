@@ -50,8 +50,8 @@ function listarAvaliacoes($avaliacoes, $user) {
         $server->where(array('id=' . $avaliacao['idvinho']));
         $vinho = $server->executar()->fetch_assoc();
 
-        echo '<div class="4u"><span class="image fit"><a href="showwine.php?id=' . $vinho['id'] . '"><img src="images/rotulos/' . $vinho['rotulo'] . '"/></a></span></div>';
-        echo '<div class="4u$"><blockquote><h3>' . $vinho['nome'] . '</a>: Nota ' . $avaliacao['nota'] . '.</h3>';
+        echo '<div class="2u 12u$(medium)"><span class="image fit"><a href="showwine.php?id=' . $vinho['id'] . '"><img src="images/rotulos/' . $vinho['rotulo'] . '"/></a></span></div>';
+        echo '<div class="10u$ 12u$(medium)"><blockquote style="margin-top: 40px;"><h3>' . $vinho['nome'] . '</a>: Nota ' . $avaliacao['nota'] . '.</h3>';
         echo '<h4>"' . $avaliacao['opiniao'] . '"</h4></blockquote></div>';
     }
     echo "</div>";
