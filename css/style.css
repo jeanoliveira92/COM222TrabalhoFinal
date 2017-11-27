@@ -1361,6 +1361,7 @@ input:checked ~ label {
 
 .reg {
     list-style:none;
+    line-height: 16px;
 }
 
 .reg2 {
@@ -1382,7 +1383,7 @@ input:checked ~ label {
 
 .average{
     position: absolute;
-    padding-bottom: 15px;
+    padding-bottom: 7px;
     bottom: 0px;
     left: 0px;
     padding-left: 1em;

@@ -62,7 +62,7 @@ $pageTitle = $vinho['nome'];
 include_once("header.php");
 ?>
 <style>
-    li{
+    .ha li{
         display: inline;
         font-size: 18px;
     }
@@ -119,7 +119,7 @@ include_once("header.php");
                 </div>
 
                 <div class="12u">
-                    <section>
+                    <section class="ha">
                         <h2>Alimentos harmonizantes:</h2>
                         <?php
                         exibeHarmonizacoes();
@@ -161,7 +161,6 @@ include_once("header.php");
 if (isset($_SESSION['nome']) && isset($_SESSION['id'])) {
     include_once('avaliacao.php');
 }
-?>
-</body>
-</html>
 
+include_once 'footer.php';
+?>

@@ -222,17 +222,17 @@ include_once("header.php");
                                     </ul>                         
                                 </a>
                                 <ul class="reg" style="margin-left: 8px;">
-                                    <li><?php echo $row['paisorigem'] ?></li>
-                                    <li><span>.</span>  </li>
                                     <li><?php echo $row['regiao'] ?></li>
+                                    <li><span><br></span></li>
+                                    <li><?php echo $row['paisorigem'] ?></li>
                                 </ul>
 
                                 <div class="average">
                                     <div class="ratingbottom">
                                         <p>Avaliação Média</p>
                                         <ul class="reg2 ">
-                                            <li><span><?php echo $row['avaliacao'] ?></span></li>
-                                            <li>2890 avaliações</li>
+                                            <li><span><?php echo $row['avaliacao'] ?> </span></li>
+                                            <li>( <?php echo $row['numavaliacoes']?> )</li>
                                         </ul>
                                     </div>
                                     <div class="ratingbottom">

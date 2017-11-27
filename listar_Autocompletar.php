@@ -17,16 +17,16 @@ while ($row = $result->fetch_assoc()) {
                 </ul>                         
             </a>
             <ul class='reg' style='margin-left: 8px;'>
-                <li>" . $row['paisorigem'] . "</li>
-                <li><span>.</span>  </li>
                 <li>" . $row['regiao'] . "</li>
+                <li><span><br></span>  </li>
+                <li>" . $row['paisorigem'] . "</li>
             </ul>
 
             <div class='average'>
                 <div class='ratingbottom'>
                     <p>Avaliação Média</p>
                     <ul class='reg2 '>
-                        <li><span>" . $row['avaliacao'] . "</span></li>
+                        <li><span>" . $row['avaliacao'] . " </span></li>
                         <li>( " . $row['numavaliacoes'] . " avaliações )</li>
                     </ul>
                 </div>
