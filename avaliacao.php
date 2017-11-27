@@ -7,7 +7,7 @@
         </header>
     </div>
     <div class="container 30%">
-        <form action="avaliar.php" method="GET">
+        <form action="avaliar.php" method="POST">
             <div class="row uniform">
                 <div class="12u$">
                     <div class="row uniform">
@@ -49,8 +49,6 @@
                                     });
 
                                     function sliderValues() {
-                                        document.getElementById('low').value = priceSlider.noUiSlider.get()[0];
-                                        document.getElementById('upp').value = priceSlider.noUiSlider.get()[1];
                                         document.getElementById('rate').value = rateSlider.noUiSlider.get();
                                     }
                                 </script>
@@ -59,9 +57,10 @@
                                 <textarea name="opiniao" id="opiniao" placeholder="Opinião" rows="6"></textarea>
                             </div>
                             <input type="hidden" name="idvinho" id="idvinho" value="<?php echo $_GET['id'] ?>">
+                            <input type="hidden" name="rate" id="rate">
                             <div class="12u$" style="padding-top: 40px;">
                                 <ul class="actions">
-                                    <li><input value="Avaliar bebida" class="special big" type="submit"></li>
+                                    <li><input value="Avaliar bebida" class="special big" type="submit" onclick="sliderValues();"></li>
                                 </ul>
                             </div>
                         </div>

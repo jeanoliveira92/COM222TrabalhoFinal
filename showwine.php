@@ -133,11 +133,20 @@ include_once("header.php");
 
 <section>
     <div class="container">
-        <div class="12u">
+        <div class="12u" id="avaliacoes">
              <section class="12u" style="text-align: center;">
                 <h2>Avaliações:</h2>
             </section>
         </div>
+        <?php if(isset($_GET['sucess'])){ ?>
+        <div class="12u$">
+            <div class="alert alert-success" role="alert">Avaliação adicionada com sucesso!</div>
+        </div>
+        <?php }else if(isset($_GET['error'])) { ?>
+        <div class="12u$">
+            <div class="alert alert-danger" role="alert">Voce já avaliou este vinho!</div>
+        </div>
+        <?php } ?>
         <div class="12u$">
             <?php
             $avaliacoes = buscaAvaliacoes();
@@ -145,7 +154,7 @@ include_once("header.php");
                 while ($av = $avaliacoes->fetch_assoc()) {
                     $pessoa = buscaUsuario($av['idusuario']);
                     if ($pessoa !== NULL) {
-                        echo '<blockquote><h4><a href="user_reviews.php?vinho='.$av['idvinho'].'&user='.$pessoa['id'].'">' . $pessoa['nome'] . '</a> avaliou em ' . $av['nota'] . ':</h4>';
+                        echo '<blockquote><h4><a href="user_reviews.php?vinho='.$av['idvinho'].'&user='.$pessoa['id'].'">' . $pessoa['nome'] . '</a>. Avaliação: ' . $av['nota'] . ':</h4>';
                         echo '"' . $av['opiniao'] . '"</blockquote>';
                     }
                 }
