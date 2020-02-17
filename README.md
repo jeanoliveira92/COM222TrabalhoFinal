@@ -4,11 +4,11 @@ Trabalho desenvolvido para a disiciplina de Desenvolvimento de Sistemas Web onde
 
 ## Tecnologias
 * HTML
-*CSS
-*PHP
-*Javascript
-*AJAX
-*Mysql
+* CSS
+* PHP
+* Javascript
+* AJAX
+* Mysql
 
 ## Interface
 ![VinumWeb Interface](https://raw.githubusercontent.com/jeanoliveira92/COM222TrabalhoFinal/master/screenshot.jpg)
