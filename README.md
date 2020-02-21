@@ -13,6 +13,10 @@ Trabalho desenvolvido para a disiciplina de Desenvolvimento de Sistemas Web onde
 ## Interface
 ![VinumWeb Interface](https://raw.githubusercontent.com/jeanoliveira92/COM222TrabalhoFinal/master/screenshot.jpg)
 
+## Autores
+Jean Carlos de Oliveira [jeanoliveira92](https://github.com/jeanoliveira92)
+
+Mateus Henrique Toledo [mateushtoledo](https://github.com/mateushtoledo)
 
 ## Licença
 
