@@ -14,9 +14,11 @@ Trabalho desenvolvido para a disiciplina de Desenvolvimento de Sistemas Web onde
 ![VinumWeb Interface](https://raw.githubusercontent.com/jeanoliveira92/COM222TrabalhoFinal/master/screenshot.jpg)
 
 ## Autores
-[Jean Carlos de Oliveira](https://github.com/jeanoliveira92)
+1. Jean Carlos de Oliveira 
+[![](https://raw.githubusercontent.com/jeanoliveira92/vinumweb/master/images/gitico.png)](https://github.com/jeanoliveira92 "Github")
 
-[Mateus Henrique Toledo](https://github.com/mateushtoledo)
+2. Mateus Henrique Toledo 
+[![](https://raw.githubusercontent.com/jeanoliveira92/vinumweb/master/images/gitico.png)](https://github.com/mateushtoledo "Github")
 
 ## Licença
 
